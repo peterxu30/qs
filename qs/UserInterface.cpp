@@ -35,7 +35,17 @@ int UserInterface::main(int argc, const char * argv[]) {
 int main(int argc, const char * argv[]) {
     string cwd = getcwd(NULL, 0); //current working directory
     cout << cwd << endl;
+    
     vector<string> to = {"peterxu30@gmail.com", "peterxu30@berkeley.edu"};
-    EmailNetworkingManager().sendEmail(to, "Test Email", "Hello!");
+    
+    //Test
+    std::unordered_map<string, string> attachments;
+    attachments["qs"] = "qs";
+    attachments["qs1"] = "qs";
+    
+    MailMessage * email = EmailMessageCreator::createEmail(to, "Test Email", "Hello!", attachments);
+    EmailNetworkingManager::sendEmail(email);
+    
+    delete email;
     return UserInterface::main(argc, argv);
 }

@@ -12,8 +12,11 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <unistd.h>
+#include <unordered_map>
 
 #include "EmailNetworkingManager.hpp"
+#include "EmailMessageCreator.hpp"
 
 using std::cin;
 using std::cout;

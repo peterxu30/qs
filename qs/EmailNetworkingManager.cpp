@@ -5,32 +5,19 @@
 //  Created by Peter Xu on 4/22/16.
 //  Copyright © 2016 Peter Xu. All rights reserved.
 //
+//  --Credits--
+//  The majority of this code was borrowed from http://axistasoft.com/blog/poco/poco-net/item/sending-email-messages-using-poco-smtpclientsession-class and tailored to suit my purposes.
+//
 
 #include "EmailNetworkingManager.hpp"
 
-int EmailNetworkingManager::sendEmail(vector<string> emailRecipients, string emailSubject, string emailBody)
+int EmailNetworkingManager::sendEmail(MailMessage * email)
 {
     cout << "HELLO!" << endl;
     string host = "smtp.gmail.com";
     UInt16 port = 465;
     string user = "atdpjava15@gmail.com";
     string password = "cupofjava";
-    string from = "atdpjava15@gmail.com";
-    string subject = emailSubject;
-    subject = MailMessage::encodeWord(subject, "UTF-8");
-    string content = emailBody;
-    
-    MailMessage message;
-    message.setSender(from);
-    
-    for (const string recipient : emailRecipients) {
-        message.addRecipient(MailRecipient(MailRecipient::PRIMARY_RECIPIENT, recipient));
-    }
-    
-    message.setSubject(subject);
-    message.setContentType("text/plain; charset=UTF-8");
-    message.setContent(content, MailMessage::ENCODING_8BIT);
-    message.addAttachment("myFile", new FilePartSource("/users/Peter/Desktop/testImage.png"));
     
     try {
         initializeSSL();
@@ -44,7 +31,7 @@ int EmailNetworkingManager::sendEmail(vector<string> emailRecipients, string ema
         
         try {
             session.login(SMTPClientSession::AUTH_LOGIN, user, password);
-            session.sendMessage(message);
+            session.sendMessage(*email);
             cout << "Message successfully sent" << endl;
             session.close();
             uninitializeSSL();
@@ -60,3 +47,4 @@ int EmailNetworkingManager::sendEmail(vector<string> emailRecipients, string ema
     }
     return 0;
 }
+

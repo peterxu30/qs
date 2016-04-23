@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0CFD1671CCBE1CC00B164D2 /* EmailMessageCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CFD1651CCBE1CC00B164D2 /* EmailMessageCreator.cpp */; };
 		D0F788771CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884B1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */; };
 		D0F788781CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884C1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */; };
 		D0F788791CCAD29B00F3B782 /* libPocoCryptod.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884D1CCAD29B00F3B782 /* libPocoCryptod.42.dylib */; };
@@ -68,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D0CFD1651CCBE1CC00B164D2 /* EmailMessageCreator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmailMessageCreator.cpp; sourceTree = "<group>"; };
+		D0CFD1661CCBE1CC00B164D2 /* EmailMessageCreator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EmailMessageCreator.hpp; sourceTree = "<group>"; };
 		D0F788411CCAD22B00F3B782 /* qs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = qs; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0F7884B1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCrypto.42.dylib; path = /usr/local/lib/libPocoCrypto.42.dylib; sourceTree = "<absolute>"; };
 		D0F7884C1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCrypto.42.dylib; path = /usr/local/lib/libPocoCrypto.42.dylib; sourceTree = "<absolute>"; };
@@ -198,6 +201,8 @@
 				D0F788A51CCAD99200F3B782 /* EmailNetworkingManager.hpp */,
 				D0F788A71CCAD9A200F3B782 /* UserInterface.cpp */,
 				D0F788A81CCAD9A200F3B782 /* UserInterface.hpp */,
+				D0CFD1651CCBE1CC00B164D2 /* EmailMessageCreator.cpp */,
+				D0CFD1661CCBE1CC00B164D2 /* EmailMessageCreator.hpp */,
 			);
 			path = qs;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CFD1671CCBE1CC00B164D2 /* EmailMessageCreator.cpp in Sources */,
 				D0F788A91CCAD9A200F3B782 /* UserInterface.cpp in Sources */,
 				D0F788A61CCAD99200F3B782 /* EmailNetworkingManager.cpp in Sources */,
 			);

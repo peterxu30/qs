@@ -16,6 +16,7 @@
 
 #include <Poco/Net/MailMessage.h>
 #include <Poco/Net/MailRecipient.h>
+#include <Poco/Net/FilePartSource.h>
 #include <Poco/Net/SecureStreamSocket.h>
 #include <Poco/Net/SMTPClientSession.h>
 #include <Poco/Net/NetException.h>
@@ -23,9 +24,13 @@
 #include <Poco/Net/SSLManager.h>
 #include <Poco/Net/AcceptCertificateHandler.h>
 #include <Poco/AutoPtr.h>
-#include <Poco/Net/FilePartSource.h>
 
-using namespace std;
+using std::cerr;
+using std::cout;
+using std::endl;
+using std::string;
+using std::vector;
+
 using namespace Poco::Net;
 using namespace Poco;
 
@@ -33,7 +38,9 @@ class EmailNetworkingManager
 {
     
 public:
-    int sendEmail(vector<string> emailRecipients, string emailSubject, string emailContent);
+    static int sendEmail(vector<string> emailRecipients, string emailSubject, string emailContent);
+    
+    static int sendEmail(MailMessage * email);
     
 };
 
