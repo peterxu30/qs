@@ -7,7 +7,6 @@
 //
 
 #include "UserInterface.hpp"
-#include "EmailNetworkingManager.hpp"
 
 int UserInterface::main(int argc, const char * argv[]) {
     if (argc > 1) {
@@ -34,6 +33,8 @@ int UserInterface::main(int argc, const char * argv[]) {
 }
 
 int main(int argc, const char * argv[]) {
+    string cwd = getcwd(NULL, 0); //current working directory
+    cout << cwd << endl;
     vector<string> to = {"peterxu30@gmail.com", "peterxu30@berkeley.edu"};
     EmailNetworkingManager().sendEmail(to, "Test Email", "Hello!");
     return UserInterface::main(argc, argv);

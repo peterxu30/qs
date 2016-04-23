@@ -13,6 +13,8 @@
 #include <iostream>
 #include <string>
 
+#include "EmailNetworkingManager.hpp"
+
 using std::cin;
 using std::cout;
 using std::endl;

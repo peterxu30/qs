@@ -405,6 +405,7 @@
 		D0F788491CCAD22B00F3B782 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -414,6 +415,7 @@
 		D0F7884A1CCAD22B00F3B782 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -439,6 +441,7 @@
 				D0F7884A1CCAD22B00F3B782 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

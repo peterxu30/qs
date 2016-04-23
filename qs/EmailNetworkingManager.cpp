@@ -30,6 +30,7 @@ int EmailNetworkingManager::sendEmail(vector<string> emailRecipients, string ema
     message.setSubject(subject);
     message.setContentType("text/plain; charset=UTF-8");
     message.setContent(content, MailMessage::ENCODING_8BIT);
+    message.addAttachment("myFile", new FilePartSource("/users/Peter/Desktop/testImage.png"));
     
     try {
         initializeSSL();

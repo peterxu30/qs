@@ -23,6 +23,7 @@
 #include <Poco/Net/SSLManager.h>
 #include <Poco/Net/AcceptCertificateHandler.h>
 #include <Poco/AutoPtr.h>
+#include <Poco/Net/FilePartSource.h>
 
 using namespace std;
 using namespace Poco::Net;
