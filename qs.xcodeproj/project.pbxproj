@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0F788771CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884B1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */; };
+		D0F788781CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884C1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */; };
+		D0F788791CCAD29B00F3B782 /* libPocoCryptod.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884D1CCAD29B00F3B782 /* libPocoCryptod.42.dylib */; };
+		D0F7887A1CCAD29B00F3B782 /* libPocoCryptod.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884E1CCAD29B00F3B782 /* libPocoCryptod.42.dylib */; };
+		D0F7887B1CCAD29B00F3B782 /* libPocoData.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884F1CCAD29B00F3B782 /* libPocoData.42.dylib */; };
+		D0F7887C1CCAD29B00F3B782 /* libPocoData.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788501CCAD29B00F3B782 /* libPocoData.42.dylib */; };
+		D0F7887D1CCAD29B00F3B782 /* libPocoDatad.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788511CCAD29B00F3B782 /* libPocoDatad.42.dylib */; };
+		D0F7887E1CCAD29B00F3B782 /* libPocoDatad.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788521CCAD29B00F3B782 /* libPocoDatad.42.dylib */; };
+		D0F7887F1CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788531CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib */; };
+		D0F788801CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788541CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib */; };
+		D0F788811CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788551CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib */; };
+		D0F788821CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788561CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib */; };
+		D0F788831CCAD29B00F3B782 /* libPocoFoundation.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788571CCAD29B00F3B782 /* libPocoFoundation.42.dylib */; };
+		D0F788841CCAD29B00F3B782 /* libPocoFoundation.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788581CCAD29B00F3B782 /* libPocoFoundation.42.dylib */; };
+		D0F788851CCAD29B00F3B782 /* libPocoFoundationd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788591CCAD29B00F3B782 /* libPocoFoundationd.42.dylib */; };
+		D0F788861CCAD29B00F3B782 /* libPocoFoundationd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7885A1CCAD29B00F3B782 /* libPocoFoundationd.42.dylib */; };
+		D0F788871CCAD29B00F3B782 /* libPocoJSON.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7885B1CCAD29B00F3B782 /* libPocoJSON.42.dylib */; };
+		D0F788881CCAD29B00F3B782 /* libPocoJSON.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7885C1CCAD29B00F3B782 /* libPocoJSON.42.dylib */; };
+		D0F788891CCAD29B00F3B782 /* libPocoJSONd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7885D1CCAD29B00F3B782 /* libPocoJSONd.42.dylib */; };
+		D0F7888A1CCAD29B00F3B782 /* libPocoJSONd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7885E1CCAD29B00F3B782 /* libPocoJSONd.42.dylib */; };
+		D0F7888B1CCAD29B00F3B782 /* libPocoMongoDB.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7885F1CCAD29B00F3B782 /* libPocoMongoDB.42.dylib */; };
+		D0F7888C1CCAD29B00F3B782 /* libPocoMongoDB.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788601CCAD29B00F3B782 /* libPocoMongoDB.42.dylib */; };
+		D0F7888D1CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788611CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib */; };
+		D0F7888E1CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788621CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib */; };
+		D0F7888F1CCAD29B00F3B782 /* libPocoNet.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788631CCAD29B00F3B782 /* libPocoNet.42.dylib */; };
+		D0F788901CCAD29B00F3B782 /* libPocoNet.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788641CCAD29B00F3B782 /* libPocoNet.42.dylib */; };
+		D0F788911CCAD29B00F3B782 /* libPocoNetd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788651CCAD29B00F3B782 /* libPocoNetd.42.dylib */; };
+		D0F788921CCAD29B00F3B782 /* libPocoNetd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788661CCAD29B00F3B782 /* libPocoNetd.42.dylib */; };
+		D0F788931CCAD29B00F3B782 /* libPocoNetSSL.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788671CCAD29B00F3B782 /* libPocoNetSSL.42.dylib */; };
+		D0F788941CCAD29B00F3B782 /* libPocoNetSSL.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788681CCAD29B00F3B782 /* libPocoNetSSL.42.dylib */; };
+		D0F788951CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788691CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib */; };
+		D0F788961CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7886A1CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib */; };
+		D0F788971CCAD29B00F3B782 /* libPocoUtil.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7886B1CCAD29B00F3B782 /* libPocoUtil.42.dylib */; };
+		D0F788981CCAD29B00F3B782 /* libPocoUtil.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7886C1CCAD29B00F3B782 /* libPocoUtil.42.dylib */; };
+		D0F788991CCAD29B00F3B782 /* libPocoUtild.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7886D1CCAD29B00F3B782 /* libPocoUtild.42.dylib */; };
+		D0F7889A1CCAD29B00F3B782 /* libPocoUtild.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7886E1CCAD29B00F3B782 /* libPocoUtild.42.dylib */; };
+		D0F7889B1CCAD29B00F3B782 /* libPocoXML.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7886F1CCAD29B00F3B782 /* libPocoXML.42.dylib */; };
+		D0F7889C1CCAD29B00F3B782 /* libPocoXML.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788701CCAD29B00F3B782 /* libPocoXML.42.dylib */; };
+		D0F7889D1CCAD29B00F3B782 /* libPocoXMLd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788711CCAD29B00F3B782 /* libPocoXMLd.42.dylib */; };
+		D0F7889E1CCAD29B00F3B782 /* libPocoXMLd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788721CCAD29B00F3B782 /* libPocoXMLd.42.dylib */; };
+		D0F7889F1CCAD29B00F3B782 /* libPocoZip.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788731CCAD29B00F3B782 /* libPocoZip.42.dylib */; };
+		D0F788A01CCAD29B00F3B782 /* libPocoZip.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788741CCAD29B00F3B782 /* libPocoZip.42.dylib */; };
+		D0F788A11CCAD29B00F3B782 /* libPocoZipd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788751CCAD29B00F3B782 /* libPocoZipd.42.dylib */; };
+		D0F788A21CCAD29B00F3B782 /* libPocoZipd.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F788761CCAD29B00F3B782 /* libPocoZipd.42.dylib */; };
+		D0F788A61CCAD99200F3B782 /* EmailNetworkingManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0F788A41CCAD99200F3B782 /* EmailNetworkingManager.cpp */; };
+		D0F788A91CCAD9A200F3B782 /* UserInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0F788A71CCAD9A200F3B782 /* UserInterface.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0F7883F1CCAD22B00F3B782 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D0F788411CCAD22B00F3B782 /* qs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = qs; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F7884B1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCrypto.42.dylib; path = /usr/local/lib/libPocoCrypto.42.dylib; sourceTree = "<absolute>"; };
+		D0F7884C1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCrypto.42.dylib; path = /usr/local/lib/libPocoCrypto.42.dylib; sourceTree = "<absolute>"; };
+		D0F7884D1CCAD29B00F3B782 /* libPocoCryptod.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCryptod.42.dylib; path = /usr/local/lib/libPocoCryptod.42.dylib; sourceTree = "<absolute>"; };
+		D0F7884E1CCAD29B00F3B782 /* libPocoCryptod.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoCryptod.42.dylib; path = /usr/local/lib/libPocoCryptod.42.dylib; sourceTree = "<absolute>"; };
+		D0F7884F1CCAD29B00F3B782 /* libPocoData.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoData.42.dylib; path = /usr/local/lib/libPocoData.42.dylib; sourceTree = "<absolute>"; };
+		D0F788501CCAD29B00F3B782 /* libPocoData.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoData.42.dylib; path = /usr/local/lib/libPocoData.42.dylib; sourceTree = "<absolute>"; };
+		D0F788511CCAD29B00F3B782 /* libPocoDatad.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDatad.42.dylib; path = /usr/local/lib/libPocoDatad.42.dylib; sourceTree = "<absolute>"; };
+		D0F788521CCAD29B00F3B782 /* libPocoDatad.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDatad.42.dylib; path = /usr/local/lib/libPocoDatad.42.dylib; sourceTree = "<absolute>"; };
+		D0F788531CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDataSQLite.42.dylib; path = /usr/local/lib/libPocoDataSQLite.42.dylib; sourceTree = "<absolute>"; };
+		D0F788541CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDataSQLite.42.dylib; path = /usr/local/lib/libPocoDataSQLite.42.dylib; sourceTree = "<absolute>"; };
+		D0F788551CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDataSQLited.42.dylib; path = /usr/local/lib/libPocoDataSQLited.42.dylib; sourceTree = "<absolute>"; };
+		D0F788561CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoDataSQLited.42.dylib; path = /usr/local/lib/libPocoDataSQLited.42.dylib; sourceTree = "<absolute>"; };
+		D0F788571CCAD29B00F3B782 /* libPocoFoundation.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoFoundation.42.dylib; path = /usr/local/lib/libPocoFoundation.42.dylib; sourceTree = "<absolute>"; };
+		D0F788581CCAD29B00F3B782 /* libPocoFoundation.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoFoundation.42.dylib; path = /usr/local/lib/libPocoFoundation.42.dylib; sourceTree = "<absolute>"; };
+		D0F788591CCAD29B00F3B782 /* libPocoFoundationd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoFoundationd.42.dylib; path = /usr/local/lib/libPocoFoundationd.42.dylib; sourceTree = "<absolute>"; };
+		D0F7885A1CCAD29B00F3B782 /* libPocoFoundationd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoFoundationd.42.dylib; path = /usr/local/lib/libPocoFoundationd.42.dylib; sourceTree = "<absolute>"; };
+		D0F7885B1CCAD29B00F3B782 /* libPocoJSON.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoJSON.42.dylib; path = /usr/local/lib/libPocoJSON.42.dylib; sourceTree = "<absolute>"; };
+		D0F7885C1CCAD29B00F3B782 /* libPocoJSON.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoJSON.42.dylib; path = /usr/local/lib/libPocoJSON.42.dylib; sourceTree = "<absolute>"; };
+		D0F7885D1CCAD29B00F3B782 /* libPocoJSONd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoJSONd.42.dylib; path = /usr/local/lib/libPocoJSONd.42.dylib; sourceTree = "<absolute>"; };
+		D0F7885E1CCAD29B00F3B782 /* libPocoJSONd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoJSONd.42.dylib; path = /usr/local/lib/libPocoJSONd.42.dylib; sourceTree = "<absolute>"; };
+		D0F7885F1CCAD29B00F3B782 /* libPocoMongoDB.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoMongoDB.42.dylib; path = /usr/local/lib/libPocoMongoDB.42.dylib; sourceTree = "<absolute>"; };
+		D0F788601CCAD29B00F3B782 /* libPocoMongoDB.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoMongoDB.42.dylib; path = /usr/local/lib/libPocoMongoDB.42.dylib; sourceTree = "<absolute>"; };
+		D0F788611CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoMongoDBd.42.dylib; path = /usr/local/lib/libPocoMongoDBd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788621CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoMongoDBd.42.dylib; path = /usr/local/lib/libPocoMongoDBd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788631CCAD29B00F3B782 /* libPocoNet.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNet.42.dylib; path = /usr/local/lib/libPocoNet.42.dylib; sourceTree = "<absolute>"; };
+		D0F788641CCAD29B00F3B782 /* libPocoNet.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNet.42.dylib; path = /usr/local/lib/libPocoNet.42.dylib; sourceTree = "<absolute>"; };
+		D0F788651CCAD29B00F3B782 /* libPocoNetd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetd.42.dylib; path = /usr/local/lib/libPocoNetd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788661CCAD29B00F3B782 /* libPocoNetd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetd.42.dylib; path = /usr/local/lib/libPocoNetd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788671CCAD29B00F3B782 /* libPocoNetSSL.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetSSL.42.dylib; path = /usr/local/lib/libPocoNetSSL.42.dylib; sourceTree = "<absolute>"; };
+		D0F788681CCAD29B00F3B782 /* libPocoNetSSL.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetSSL.42.dylib; path = /usr/local/lib/libPocoNetSSL.42.dylib; sourceTree = "<absolute>"; };
+		D0F788691CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetSSLd.42.dylib; path = /usr/local/lib/libPocoNetSSLd.42.dylib; sourceTree = "<absolute>"; };
+		D0F7886A1CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoNetSSLd.42.dylib; path = /usr/local/lib/libPocoNetSSLd.42.dylib; sourceTree = "<absolute>"; };
+		D0F7886B1CCAD29B00F3B782 /* libPocoUtil.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoUtil.42.dylib; path = /usr/local/lib/libPocoUtil.42.dylib; sourceTree = "<absolute>"; };
+		D0F7886C1CCAD29B00F3B782 /* libPocoUtil.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoUtil.42.dylib; path = /usr/local/lib/libPocoUtil.42.dylib; sourceTree = "<absolute>"; };
+		D0F7886D1CCAD29B00F3B782 /* libPocoUtild.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoUtild.42.dylib; path = /usr/local/lib/libPocoUtild.42.dylib; sourceTree = "<absolute>"; };
+		D0F7886E1CCAD29B00F3B782 /* libPocoUtild.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoUtild.42.dylib; path = /usr/local/lib/libPocoUtild.42.dylib; sourceTree = "<absolute>"; };
+		D0F7886F1CCAD29B00F3B782 /* libPocoXML.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoXML.42.dylib; path = /usr/local/lib/libPocoXML.42.dylib; sourceTree = "<absolute>"; };
+		D0F788701CCAD29B00F3B782 /* libPocoXML.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoXML.42.dylib; path = /usr/local/lib/libPocoXML.42.dylib; sourceTree = "<absolute>"; };
+		D0F788711CCAD29B00F3B782 /* libPocoXMLd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoXMLd.42.dylib; path = /usr/local/lib/libPocoXMLd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788721CCAD29B00F3B782 /* libPocoXMLd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoXMLd.42.dylib; path = /usr/local/lib/libPocoXMLd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788731CCAD29B00F3B782 /* libPocoZip.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoZip.42.dylib; path = /usr/local/lib/libPocoZip.42.dylib; sourceTree = "<absolute>"; };
+		D0F788741CCAD29B00F3B782 /* libPocoZip.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoZip.42.dylib; path = /usr/local/lib/libPocoZip.42.dylib; sourceTree = "<absolute>"; };
+		D0F788751CCAD29B00F3B782 /* libPocoZipd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoZipd.42.dylib; path = /usr/local/lib/libPocoZipd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788761CCAD29B00F3B782 /* libPocoZipd.42.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPocoZipd.42.dylib; path = /usr/local/lib/libPocoZipd.42.dylib; sourceTree = "<absolute>"; };
+		D0F788A41CCAD99200F3B782 /* EmailNetworkingManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmailNetworkingManager.cpp; sourceTree = "<group>"; };
+		D0F788A51CCAD99200F3B782 /* EmailNetworkingManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EmailNetworkingManager.hpp; sourceTree = "<group>"; };
+		D0F788A71CCAD9A200F3B782 /* UserInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserInterface.cpp; sourceTree = "<group>"; };
+		D0F788A81CCAD9A200F3B782 /* UserInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UserInterface.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0F7883E1CCAD22B00F3B782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F788771CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */,
+				D0F788781CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */,
+				D0F788791CCAD29B00F3B782 /* libPocoCryptod.42.dylib in Frameworks */,
+				D0F7887A1CCAD29B00F3B782 /* libPocoCryptod.42.dylib in Frameworks */,
+				D0F7887B1CCAD29B00F3B782 /* libPocoData.42.dylib in Frameworks */,
+				D0F7887C1CCAD29B00F3B782 /* libPocoData.42.dylib in Frameworks */,
+				D0F7887D1CCAD29B00F3B782 /* libPocoDatad.42.dylib in Frameworks */,
+				D0F7887E1CCAD29B00F3B782 /* libPocoDatad.42.dylib in Frameworks */,
+				D0F7887F1CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib in Frameworks */,
+				D0F788801CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib in Frameworks */,
+				D0F788811CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib in Frameworks */,
+				D0F788821CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib in Frameworks */,
+				D0F788831CCAD29B00F3B782 /* libPocoFoundation.42.dylib in Frameworks */,
+				D0F788841CCAD29B00F3B782 /* libPocoFoundation.42.dylib in Frameworks */,
+				D0F788851CCAD29B00F3B782 /* libPocoFoundationd.42.dylib in Frameworks */,
+				D0F788861CCAD29B00F3B782 /* libPocoFoundationd.42.dylib in Frameworks */,
+				D0F788871CCAD29B00F3B782 /* libPocoJSON.42.dylib in Frameworks */,
+				D0F788881CCAD29B00F3B782 /* libPocoJSON.42.dylib in Frameworks */,
+				D0F788891CCAD29B00F3B782 /* libPocoJSONd.42.dylib in Frameworks */,
+				D0F7888A1CCAD29B00F3B782 /* libPocoJSONd.42.dylib in Frameworks */,
+				D0F7888B1CCAD29B00F3B782 /* libPocoMongoDB.42.dylib in Frameworks */,
+				D0F7888C1CCAD29B00F3B782 /* libPocoMongoDB.42.dylib in Frameworks */,
+				D0F7888D1CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib in Frameworks */,
+				D0F7888E1CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib in Frameworks */,
+				D0F7888F1CCAD29B00F3B782 /* libPocoNet.42.dylib in Frameworks */,
+				D0F788901CCAD29B00F3B782 /* libPocoNet.42.dylib in Frameworks */,
+				D0F788911CCAD29B00F3B782 /* libPocoNetd.42.dylib in Frameworks */,
+				D0F788921CCAD29B00F3B782 /* libPocoNetd.42.dylib in Frameworks */,
+				D0F788931CCAD29B00F3B782 /* libPocoNetSSL.42.dylib in Frameworks */,
+				D0F788941CCAD29B00F3B782 /* libPocoNetSSL.42.dylib in Frameworks */,
+				D0F788951CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib in Frameworks */,
+				D0F788961CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib in Frameworks */,
+				D0F788971CCAD29B00F3B782 /* libPocoUtil.42.dylib in Frameworks */,
+				D0F788981CCAD29B00F3B782 /* libPocoUtil.42.dylib in Frameworks */,
+				D0F788991CCAD29B00F3B782 /* libPocoUtild.42.dylib in Frameworks */,
+				D0F7889A1CCAD29B00F3B782 /* libPocoUtild.42.dylib in Frameworks */,
+				D0F7889B1CCAD29B00F3B782 /* libPocoXML.42.dylib in Frameworks */,
+				D0F7889C1CCAD29B00F3B782 /* libPocoXML.42.dylib in Frameworks */,
+				D0F7889D1CCAD29B00F3B782 /* libPocoXMLd.42.dylib in Frameworks */,
+				D0F7889E1CCAD29B00F3B782 /* libPocoXMLd.42.dylib in Frameworks */,
+				D0F7889F1CCAD29B00F3B782 /* libPocoZip.42.dylib in Frameworks */,
+				D0F788A01CCAD29B00F3B782 /* libPocoZip.42.dylib in Frameworks */,
+				D0F788A11CCAD29B00F3B782 /* libPocoZipd.42.dylib in Frameworks */,
+				D0F788A21CCAD29B00F3B782 /* libPocoZipd.42.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0F788381CCAD22B00F3B782 = {
+			isa = PBXGroup;
+			children = (
+				D0F788A31CCAD2F100F3B782 /* Libraries */,
+				D0F788431CCAD22B00F3B782 /* qs */,
+				D0F788421CCAD22B00F3B782 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0F788421CCAD22B00F3B782 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0F788411CCAD22B00F3B782 /* qs */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0F788431CCAD22B00F3B782 /* qs */ = {
+			isa = PBXGroup;
+			children = (
+				D0F788A41CCAD99200F3B782 /* EmailNetworkingManager.cpp */,
+				D0F788A51CCAD99200F3B782 /* EmailNetworkingManager.hpp */,
+				D0F788A71CCAD9A200F3B782 /* UserInterface.cpp */,
+				D0F788A81CCAD9A200F3B782 /* UserInterface.hpp */,
+			);
+			path = qs;
+			sourceTree = "<group>";
+		};
+		D0F788A31CCAD2F100F3B782 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				D0F7884B1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */,
+				D0F7884C1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */,
+				D0F7884D1CCAD29B00F3B782 /* libPocoCryptod.42.dylib */,
+				D0F7884E1CCAD29B00F3B782 /* libPocoCryptod.42.dylib */,
+				D0F7884F1CCAD29B00F3B782 /* libPocoData.42.dylib */,
+				D0F788501CCAD29B00F3B782 /* libPocoData.42.dylib */,
+				D0F788511CCAD29B00F3B782 /* libPocoDatad.42.dylib */,
+				D0F788521CCAD29B00F3B782 /* libPocoDatad.42.dylib */,
+				D0F788531CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib */,
+				D0F788541CCAD29B00F3B782 /* libPocoDataSQLite.42.dylib */,
+				D0F788551CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib */,
+				D0F788561CCAD29B00F3B782 /* libPocoDataSQLited.42.dylib */,
+				D0F788571CCAD29B00F3B782 /* libPocoFoundation.42.dylib */,
+				D0F788581CCAD29B00F3B782 /* libPocoFoundation.42.dylib */,
+				D0F788591CCAD29B00F3B782 /* libPocoFoundationd.42.dylib */,
+				D0F7885A1CCAD29B00F3B782 /* libPocoFoundationd.42.dylib */,
+				D0F7885B1CCAD29B00F3B782 /* libPocoJSON.42.dylib */,
+				D0F7885C1CCAD29B00F3B782 /* libPocoJSON.42.dylib */,
+				D0F7885D1CCAD29B00F3B782 /* libPocoJSONd.42.dylib */,
+				D0F7885E1CCAD29B00F3B782 /* libPocoJSONd.42.dylib */,
+				D0F7885F1CCAD29B00F3B782 /* libPocoMongoDB.42.dylib */,
+				D0F788601CCAD29B00F3B782 /* libPocoMongoDB.42.dylib */,
+				D0F788611CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib */,
+				D0F788621CCAD29B00F3B782 /* libPocoMongoDBd.42.dylib */,
+				D0F788631CCAD29B00F3B782 /* libPocoNet.42.dylib */,
+				D0F788641CCAD29B00F3B782 /* libPocoNet.42.dylib */,
+				D0F788651CCAD29B00F3B782 /* libPocoNetd.42.dylib */,
+				D0F788661CCAD29B00F3B782 /* libPocoNetd.42.dylib */,
+				D0F788671CCAD29B00F3B782 /* libPocoNetSSL.42.dylib */,
+				D0F788681CCAD29B00F3B782 /* libPocoNetSSL.42.dylib */,
+				D0F788691CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib */,
+				D0F7886A1CCAD29B00F3B782 /* libPocoNetSSLd.42.dylib */,
+				D0F7886B1CCAD29B00F3B782 /* libPocoUtil.42.dylib */,
+				D0F7886C1CCAD29B00F3B782 /* libPocoUtil.42.dylib */,
+				D0F7886D1CCAD29B00F3B782 /* libPocoUtild.42.dylib */,
+				D0F7886E1CCAD29B00F3B782 /* libPocoUtild.42.dylib */,
+				D0F7886F1CCAD29B00F3B782 /* libPocoXML.42.dylib */,
+				D0F788701CCAD29B00F3B782 /* libPocoXML.42.dylib */,
+				D0F788711CCAD29B00F3B782 /* libPocoXMLd.42.dylib */,
+				D0F788721CCAD29B00F3B782 /* libPocoXMLd.42.dylib */,
+				D0F788731CCAD29B00F3B782 /* libPocoZip.42.dylib */,
+				D0F788741CCAD29B00F3B782 /* libPocoZip.42.dylib */,
+				D0F788751CCAD29B00F3B782 /* libPocoZipd.42.dylib */,
+				D0F788761CCAD29B00F3B782 /* libPocoZipd.42.dylib */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0F788401CCAD22B00F3B782 /* qs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0F788481CCAD22B00F3B782 /* Build configuration list for PBXNativeTarget "qs" */;
+			buildPhases = (
+				D0F7883D1CCAD22B00F3B782 /* Sources */,
+				D0F7883E1CCAD22B00F3B782 /* Frameworks */,
+				D0F7883F1CCAD22B00F3B782 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = qs;
+			productName = qs;
+			productReference = D0F788411CCAD22B00F3B782 /* qs */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0F788391CCAD22B00F3B782 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Peter Xu";
+				TargetAttributes = {
+					D0F788401CCAD22B00F3B782 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = D0F7883C1CCAD22B00F3B782 /* Build configuration list for PBXProject "qs" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D0F788381CCAD22B00F3B782;
+			productRefGroup = D0F788421CCAD22B00F3B782 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0F788401CCAD22B00F3B782 /* qs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0F7883D1CCAD22B00F3B782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F788A91CCAD9A200F3B782 /* UserInterface.cpp in Sources */,
+				D0F788A61CCAD99200F3B782 /* EmailNetworkingManager.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D0F788461CCAD22B00F3B782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D0F788471CCAD22B00F3B782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D0F788491CCAD22B00F3B782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D0F7884A1CCAD22B00F3B782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0F7883C1CCAD22B00F3B782 /* Build configuration list for PBXProject "qs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F788461CCAD22B00F3B782 /* Debug */,
+				D0F788471CCAD22B00F3B782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0F788481CCAD22B00F3B782 /* Build configuration list for PBXNativeTarget "qs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F788491CCAD22B00F3B782 /* Debug */,
+				D0F7884A1CCAD22B00F3B782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0F788391CCAD22B00F3B782 /* Project object */;
+}
