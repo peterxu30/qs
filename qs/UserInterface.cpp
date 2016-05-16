@@ -13,7 +13,10 @@ int UserInterface::main(int argc, const char * argv[]) {
         string command = argv[1];
         std::transform(command.begin(), command.end(), command.begin(), ::tolower);
         
-        if (command == "add") {
+        if (command == "init") {
+            AccountsManager::initializeQuickSendAccountsManager();
+            cout << "QuickSend initialized." << endl;
+        } else if (command == "add") {
             cout << "Added" << endl;
         } else if (command == "rm") {
             cout << "Removed" << endl;

@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <unordered_map>
 
+#include "AccountsManager.hpp"
 #include "EmailNetworkingManager.hpp"
 #include "EmailMessageCreator.hpp"
 
