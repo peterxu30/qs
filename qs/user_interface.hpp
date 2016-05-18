@@ -1,5 +1,5 @@
 //
-//  UserInterface.hpp
+//  user_interface.hpp
 //  qs
 //
 //  Created by Peter Xu on 4/22/16.
@@ -15,9 +15,9 @@
 #include <unistd.h>
 #include <unordered_map>
 
-#include "AccountsManager.hpp"
-#include "EmailNetworkingManager.hpp"
-#include "EmailMessageCreator.hpp"
+#include "accounts_manager.hpp"
+#include "email_networking_manager.hpp"
+#include "email_message_creator.hpp"
 
 using std::cin;
 using std::cout;
@@ -32,4 +32,4 @@ public:
 
 int main(int argc, const char * argv[]);
 
-#endif /* UserInterface_hpp */
+#endif /* user_interface_hpp */

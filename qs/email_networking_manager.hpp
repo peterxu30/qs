@@ -1,13 +1,13 @@
 //
-//  EmailNetworkingManager.hpp
+//  email_networking_manager.hpp
 //  qs
 //
 //  Created by Peter Xu on 4/22/16.
 //  Copyright © 2016 Peter Xu. All rights reserved.
 //
 
-#ifndef EmailNetworkingManager_hpp
-#define EmailNetworkingManager_hpp
+#ifndef email_networking_manager_hpp
+#define email_networking_manager_hpp
 
 #include <stdio.h>
 #include <iostream>
@@ -44,4 +44,4 @@ public:
     
 };
 
-#endif /* EmailNetworkingManager_hpp */
+#endif /* email_networking_manager_hpp */

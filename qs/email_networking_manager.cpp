@@ -1,5 +1,5 @@
 //
-//  EmailNetworkingManager.cpp
+//  email_networking_manager.cpp
 //  qs
 //
 //  Created by Peter Xu on 4/22/16.
@@ -9,7 +9,7 @@
 //  The majority of this code was borrowed from http://axistasoft.com/blog/poco/poco-net/item/sending-email-messages-using-poco-smtpclientsession-class and tailored to suit my purposes.
 //
 
-#include "EmailNetworkingManager.hpp"
+#include "email_networking_manager.hpp"
 
 int EmailNetworkingManager::sendEmail(MailMessage * email)
 {

@@ -1,13 +1,13 @@
 //
-//  EmailMessageCreator.hpp
+//  email_message_creator.hpp
 //  qs
 //
 //  Created by Peter Xu on 4/23/16.
 //  Copyright © 2016 Peter Xu. All rights reserved.
 //
 
-#ifndef EmailMessageCreator_hpp
-#define EmailMessageCreator_hpp
+#ifndef email_message_creator_hpp
+#define email_message_creator_hpp
 
 #include <stdio.h>
 #include <iostream>
@@ -34,4 +34,4 @@ public:
     static MailMessage * createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
 };
 
-#endif /* EmailMessageCreator_hpp */
+#endif /* email_message_creator_hpp */

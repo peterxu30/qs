@@ -1,12 +1,12 @@
 //
-//  EmailMessageCreator.cpp
+//  email_message_creator.cpp
 //  qs
 //
 //  Created by Peter Xu on 4/23/16.
 //  Copyright © 2016 Peter Xu. All rights reserved.
 //
 
-#include "EmailMessageCreator.hpp"
+#include "email_message_creator.hpp"
 
 MailMessage * EmailMessageCreator::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent)
 {

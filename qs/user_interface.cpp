@@ -1,12 +1,12 @@
 //
-//  UserInterface.cpp
+//  user_interface.cpp
 //  qs
 //
 //  Created by Peter Xu on 4/22/16.
 //  Copyright © 2016 Peter Xu. All rights reserved.
 //
 
-#include "UserInterface.hpp"
+#include "user_interface.hpp"
 
 int UserInterface::main(int argc, const char * argv[]) {
     if (argc > 1) {
@@ -15,9 +15,8 @@ int UserInterface::main(int argc, const char * argv[]) {
         
         if (command == "init") {
             AccountsManager::initializeQuickSendAccountsManager();
-            cout << "QuickSend initialized." << endl;
         } else if (command == "add") {
-            cout << "Added" << endl;
+            AccountsManager::interactiveAddEmailAccount();
         } else if (command == "rm") {
             cout << "Removed" << endl;
         } else if (command == "new") {
