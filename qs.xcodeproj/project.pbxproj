@@ -10,6 +10,7 @@
 		D07839181CEA794400E4A03D /* accounts_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07839161CEA794400E4A03D /* accounts_manager.cpp */; };
 		D078391E1CEA938600E4A03D /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D078391D1CEA938600E4A03D /* libboost_filesystem.dylib */; };
 		D07839221CEA93CB00E4A03D /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D07839211CEA93CB00E4A03D /* libboost_system.dylib */; };
+		D0C9BEB31CEE839E0051B100 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C9BEB11CEE839E0051B100 /* base64.cpp */; };
 		D0CFD1671CCBE1CC00B164D2 /* email_message_creator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CFD1651CCBE1CC00B164D2 /* email_message_creator.cpp */; };
 		D0F788771CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884B1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */; };
 		D0F788781CCAD29B00F3B782 /* libPocoCrypto.42.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F7884C1CCAD29B00F3B782 /* libPocoCrypto.42.dylib */; };
@@ -77,6 +78,8 @@
 		D078391D1CEA938600E4A03D /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = /usr/local/lib/libboost_filesystem.dylib; sourceTree = "<absolute>"; };
 		D07839211CEA93CB00E4A03D /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = /usr/local/lib/libboost_system.dylib; sourceTree = "<absolute>"; };
 		D07839231CEAB18E00E4A03D /* error_checking_macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error_checking_macros.h; sourceTree = "<group>"; };
+		D0C9BEB11CEE839E0051B100 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
+		D0C9BEB21CEE839E0051B100 /* base64.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = base64.hpp; sourceTree = "<group>"; };
 		D0CFD1651CCBE1CC00B164D2 /* email_message_creator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = email_message_creator.cpp; sourceTree = "<group>"; };
 		D0CFD1661CCBE1CC00B164D2 /* email_message_creator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = email_message_creator.hpp; sourceTree = "<group>"; };
 		D0F788411CCAD22B00F3B782 /* qs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = qs; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +219,8 @@
 				D07839161CEA794400E4A03D /* accounts_manager.cpp */,
 				D07839171CEA794400E4A03D /* accounts_manager.hpp */,
 				D07839231CEAB18E00E4A03D /* error_checking_macros.h */,
+				D0C9BEB11CEE839E0051B100 /* base64.cpp */,
+				D0C9BEB21CEE839E0051B100 /* base64.hpp */,
 			);
 			path = qs;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				D0CFD1671CCBE1CC00B164D2 /* email_message_creator.cpp in Sources */,
 				D0F788A91CCAD9A200F3B782 /* user_interface.cpp in Sources */,
 				D0F788A61CCAD99200F3B782 /* email_networking_manager.cpp in Sources */,
+				D0C9BEB31CEE839E0051B100 /* base64.cpp in Sources */,
 				D07839181CEA794400E4A03D /* accounts_manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

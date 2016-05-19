@@ -19,6 +19,8 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/filesystem.hpp>
+
+#include "base64.hpp"
 #include "error_checking_macros.h"
 
 using std::cin;
@@ -30,19 +32,28 @@ using std::vector;
 
 class AccountsManager {
 public:
+    struct Account {
+        string email;
+        string password;
+        string smtpAddress;
+    };
+    
     static void initializeQuickSendAccountsManager();
     static void addEmailAccount(string email, string password, string smtpAddress, bool active);
     static void interactiveAddEmailAccount();
-    static void deleteEmailAccount(string email);
+    static bool deleteEmailAccount(string email);
+    static void interactiveDeleteEmailAccount();
     static void deleteAllEmailAccounts();
-    static string getActiveEmailAccount();
+    static AccountsManager::Account getActiveEmailAccount();
     static void switchActiveEmailAccount(string email);
 private:
     static string activeEmailAddress;
-    static string activeEmailPasswordHashed;
+    static string activeEmailEncodedPassword;
     static string activeEmailSMTP;
+    static bool activeAccountExists;
     static bool accountsManagerIsInitialized();
     static bool verifyEmailIsValid(string email, string password, string smtpAddress);
+    static void changeActiveEmailAccountVariables(string email, string encodedPassword, string emailSMTP);
     static void rebuildAccountsFile(list<string>& fileContents);
 };
 

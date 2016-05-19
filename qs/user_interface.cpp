@@ -34,6 +34,21 @@ int UserInterface::main(int argc, const char * argv[]) {
     return 0;
 }
 
+//void initializeQuickSend() {
+//    ASSERT(!AccountsManager::accountsManagerIsInitialized(), "Initialization failed: quicksend is already initialized.");
+//    
+//    const char dir_path[] = "qs_data";
+//    boost::filesystem::path dir(dir_path);
+//    
+//    if(boost::filesystem::create_directory(dir)) {
+//        std::ofstream accountFile("qs_data/accountFile.txt");
+//        cout << "quicksend initialized." << "\n";
+//        interactiveAddEmailAccount();
+//    } else {
+//        cout << "Initialization failed: Unable to create quicksend directory during initialization." << endl;
+//    }
+//}
+
 int main(int argc, const char * argv[]) {
     string cwd = getcwd(NULL, 0); //current working directory
     cout << cwd << endl;
