@@ -116,6 +116,28 @@ AccountsManager::Account AccountsManager::getActiveEmailAccount() {
     return activeAccount;
 }
 
+vector<string> AccountsManager::getAllEmailsAsStrings() {
+    std::ifstream accountsFileStream("qs_data/accountFile.txt");
+    string accountLine;
+    vector<string> emailsAsStrings;
+    if (accountsFileStream.is_open()) {
+        while (getline(accountsFileStream, accountLine, '\n')) {
+            vector<string> tokens;
+            boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
+            
+            string accountWithoutPassword;
+            if (tokens.size() == 4) {
+                accountWithoutPassword = tokens[0] + " " + tokens[2] + " *";
+            } else {
+                accountWithoutPassword = tokens[0] + " " + tokens[2];
+            }
+            
+            emailsAsStrings.push_back(accountWithoutPassword);
+        }
+    }
+    return emailsAsStrings;
+}
+
 string AccountsManager::getActiveEmailAddress() {
     return getActiveEmailAccount().email;
 }

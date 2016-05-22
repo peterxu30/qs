@@ -30,6 +30,7 @@ public:
     static int main(int argc, const char * argv[]);
     static void interactiveAddEmailAccount();
     static void interactiveDeleteEmailAccount(int argc, const char* argv[]);
+    static void displayAllEmails();
 };
 
 int main(int argc, const char * argv[]);

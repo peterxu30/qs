@@ -44,6 +44,7 @@ public:
     static void deleteAllEmailAccounts();
     static AccountsManager::Account getActiveEmailAccount();
     static string getActiveEmailAddress();
+    static vector<string> getAllEmailsAsStrings();
     static void switchActiveEmailAccount(string email);
 private:
     static string activeEmailAddress;

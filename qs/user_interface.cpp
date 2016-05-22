@@ -19,7 +19,9 @@ int UserInterface::main(int argc, const char * argv[]) {
             interactiveAddEmailAccount();
         } else if (command == "delete") {
             interactiveDeleteEmailAccount(argc, argv);
-        } else if (command == "rm") {
+        } else if (command == "display") {
+            displayAllEmails();
+        }else if (command == "rm") {
             cout << "Removed" << endl;
         } else if (command == "new") {
             cout << "New Email" << endl;
@@ -78,6 +80,20 @@ void UserInterface::interactiveDeleteEmailAccount(int argc, const char* argv[]) 
     } else {
         cout << "Delete failed: Improper amount of arguments." << endl;
     }
+}
+
+void UserInterface::displayAllEmails() {
+    vector<string> emailsAsStrings = AccountsManager::getAllEmailsAsStrings();
+    
+    vector<string>::iterator iter = emailsAsStrings.begin();
+    vector<string>::iterator end = emailsAsStrings.end();
+    
+    cout << "Email Address  |  SMTP Address\n";
+    while (iter != end) {
+        cout << *iter << '\n';
+        ++iter;
+    }
+    cout << endl;
 }
 
 int main(int argc, const char * argv[]) {
