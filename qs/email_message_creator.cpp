@@ -12,7 +12,8 @@ MailMessage * EmailMessageCreator::createEmail(vector<string> emailRecipients, s
 {
     MailMessage * newEmail = new MailMessage();
     
-    newEmail->setSender("atdpjava15@gmail.com"); //temporary sender
+//    newEmail->setSender("atdpjava15@gmail.com"); //temporary sender
+    newEmail->setSender(AccountsManager::getActiveEmailAddress());
     
     for (const string recipient : emailRecipients) {
         newEmail->addRecipient(MailRecipient(MailRecipient::PRIMARY_RECIPIENT, recipient));

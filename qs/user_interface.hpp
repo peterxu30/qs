@@ -18,16 +18,18 @@
 #include "accounts_manager.hpp"
 #include "email_networking_manager.hpp"
 #include "email_message_creator.hpp"
+#include "qs_manager.hpp"
 
 using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
 
-class UserInterface
-{
+class UserInterface {
 public:
     static int main(int argc, const char * argv[]);
+    static void interactiveAddEmailAccount();
+    static void interactiveDeleteEmailAccount(int argc, const char* argv[]);
 };
 
 int main(int argc, const char * argv[]);

@@ -38,20 +38,18 @@ public:
         string smtpAddress;
     };
     
-    static void initializeQuickSendAccountsManager();
+    static bool accountsManagerIsInitialized();
     static void addEmailAccount(string email, string password, string smtpAddress, bool active);
-    static void interactiveAddEmailAccount();
     static bool deleteEmailAccount(string email);
-    static void interactiveDeleteEmailAccount();
     static void deleteAllEmailAccounts();
     static AccountsManager::Account getActiveEmailAccount();
+    static string getActiveEmailAddress();
     static void switchActiveEmailAccount(string email);
 private:
     static string activeEmailAddress;
     static string activeEmailEncodedPassword;
     static string activeEmailSMTP;
     static bool activeAccountExists;
-    static bool accountsManagerIsInitialized();
     static bool verifyEmailIsValid(string email, string password, string smtpAddress);
     static void changeActiveEmailAccountVariables(string email, string encodedPassword, string emailSMTP);
     static void rebuildAccountsFile(list<string>& fileContents);

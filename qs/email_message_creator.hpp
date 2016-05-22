@@ -21,6 +21,8 @@
 #include <Poco/Net/MailRecipient.h>
 #include <Poco/Net/FilePartSource.h>
 
+#include "accounts_manager.hpp"
+
 using std::string;
 using std::vector;
 using namespace Poco::Net;

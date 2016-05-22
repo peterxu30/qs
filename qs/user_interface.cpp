@@ -14,9 +14,11 @@ int UserInterface::main(int argc, const char * argv[]) {
         std::transform(command.begin(), command.end(), command.begin(), ::tolower);
         
         if (command == "init") {
-            AccountsManager::initializeQuickSendAccountsManager();
+            QSManager::initializeQuickSend();
         } else if (command == "add") {
-            AccountsManager::interactiveAddEmailAccount();
+            interactiveAddEmailAccount();
+        } else if (command == "delete") {
+            interactiveDeleteEmailAccount(argc, argv);
         } else if (command == "rm") {
             cout << "Removed" << endl;
         } else if (command == "new") {
@@ -26,7 +28,7 @@ int UserInterface::main(int argc, const char * argv[]) {
         } else if (command == "login") {
             cout << "Login" << endl;
         } else {
-            cout << command << " is not a qs command." << endl;
+            cout << "Command failed: " << command << " is not a qs command." << endl;
         }
     } else {
         cout << "No command entered." << endl;
@@ -34,34 +36,63 @@ int UserInterface::main(int argc, const char * argv[]) {
     return 0;
 }
 
-//void initializeQuickSend() {
-//    ASSERT(!AccountsManager::accountsManagerIsInitialized(), "Initialization failed: quicksend is already initialized.");
-//    
-//    const char dir_path[] = "qs_data";
-//    boost::filesystem::path dir(dir_path);
-//    
-//    if(boost::filesystem::create_directory(dir)) {
-//        std::ofstream accountFile("qs_data/accountFile.txt");
-//        cout << "quicksend initialized." << "\n";
-//        interactiveAddEmailAccount();
-//    } else {
-//        cout << "Initialization failed: Unable to create quicksend directory during initialization." << endl;
-//    }
-//}
+void UserInterface::interactiveAddEmailAccount() {
+    ASSERT(QSManager::dataDirectoryInitialized(), "Add Failed: QuickSend is not initialized.");
+    ASSERT(AccountsManager::accountsManagerIsInitialized(), "Add failed: accountsFile does not exist.");
+    
+    string email;
+    string password;
+    string smtpAddress;
+    string setActive;
+    bool active = false;
+    cout << "Add new email account.\n";
+    
+    cout << "Email: ";
+    cin >> email;
+    
+    cout << "Password: ";
+    cin >> password;
+    
+    cout << "SMTP Address: ";
+    cin >> smtpAddress;
+    
+    cout << "Set to active account? (y/n): ";
+    cin >> setActive;
+    std::transform(setActive.begin(), setActive.end(), setActive.begin(), ::tolower);
+    
+    if (setActive == "y") {
+        active = true;
+    }
+    
+    AccountsManager::addEmailAccount(email, password, smtpAddress, active);
+    cout << "Account saved." << endl;
+}
+
+void UserInterface::interactiveDeleteEmailAccount(int argc, const char* argv[]) {
+    if (argc == 3) {
+        if (AccountsManager::deleteEmailAccount(argv[2])) {
+            cout << "Email deleted." << endl;
+        } else {
+            cout << "Delete failed: Email not found." << endl;
+        }
+    } else {
+        cout << "Delete failed: Improper amount of arguments." << endl;
+    }
+}
 
 int main(int argc, const char * argv[]) {
     string cwd = getcwd(NULL, 0); //current working directory
     cout << cwd << endl;
     
-    vector<string> to = {"peterxu30@gmail.com", "peterxu30@berkeley.edu"};
+    vector<string> to = {"peterxu30@berkeley.edu"};
     
     //Test
     std::unordered_map<string, string> attachments;
-    attachments["qs"] = "qs";
-    attachments["qs1"] = "qs";
+//    attachments["qs"] = "qs";
+//    attachments["qs1"] = "qs";
     
     MailMessage * email = EmailMessageCreator::createEmail(to, "Test Email", "Hello!", attachments);
-    EmailNetworkingManager::sendEmail(email);
+//    EmailNetworkingManager::sendEmail(email);
     
     delete email;
     return UserInterface::main(argc, argv);

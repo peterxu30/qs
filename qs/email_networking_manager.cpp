@@ -5,7 +5,7 @@
 //  Created by Peter Xu on 4/22/16.
 //  Copyright © 2016 Peter Xu. All rights reserved.
 //
-//  --Credits--
+//  Credit:
 //  The majority of this code was borrowed from http://axistasoft.com/blog/poco/poco-net/item/sending-email-messages-using-poco-smtpclientsession-class and tailored to suit my purposes.
 //
 
@@ -13,11 +13,11 @@
 
 int EmailNetworkingManager::sendEmail(MailMessage * email)
 {
-    cout << "HELLO!" << endl;
-    string host = "smtp.gmail.com";
+    AccountsManager::Account activeAccount = AccountsManager::getActiveEmailAccount();
+    string host = activeAccount.smtpAddress;
     UInt16 port = 465;
-    string user = "atdpjava15@gmail.com";
-    string password = "cupofjava";
+    string user = activeAccount.email;
+    string password = activeAccount.password;
     
     try {
         initializeSSL();

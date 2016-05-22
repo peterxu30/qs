@@ -25,6 +25,8 @@
 #include <Poco/Net/AcceptCertificateHandler.h>
 #include <Poco/AutoPtr.h>
 
+#include "accounts_manager.hpp"
+
 using std::cerr;
 using std::cout;
 using std::endl;

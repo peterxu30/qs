@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0534DD91CEEAFE800BB83C1 /* qs_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0534DD71CEEAFE800BB83C1 /* qs_manager.cpp */; };
+		D0534DDC1CEEB41600BB83C1 /* log_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0534DDA1CEEB41600BB83C1 /* log_manager.cpp */; };
 		D07839181CEA794400E4A03D /* accounts_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07839161CEA794400E4A03D /* accounts_manager.cpp */; };
 		D078391E1CEA938600E4A03D /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D078391D1CEA938600E4A03D /* libboost_filesystem.dylib */; };
 		D07839221CEA93CB00E4A03D /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D07839211CEA93CB00E4A03D /* libboost_system.dylib */; };
@@ -73,6 +75,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D0534DD71CEEAFE800BB83C1 /* qs_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = qs_manager.cpp; sourceTree = "<group>"; };
+		D0534DD81CEEAFE800BB83C1 /* qs_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qs_manager.hpp; sourceTree = "<group>"; };
+		D0534DDA1CEEB41600BB83C1 /* log_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log_manager.cpp; sourceTree = "<group>"; };
+		D0534DDB1CEEB41600BB83C1 /* log_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = log_manager.hpp; sourceTree = "<group>"; };
 		D07839161CEA794400E4A03D /* accounts_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = accounts_manager.cpp; sourceTree = "<group>"; };
 		D07839171CEA794400E4A03D /* accounts_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = accounts_manager.hpp; sourceTree = "<group>"; };
 		D078391D1CEA938600E4A03D /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = /usr/local/lib/libboost_filesystem.dylib; sourceTree = "<absolute>"; };
@@ -221,6 +227,10 @@
 				D07839231CEAB18E00E4A03D /* error_checking_macros.h */,
 				D0C9BEB11CEE839E0051B100 /* base64.cpp */,
 				D0C9BEB21CEE839E0051B100 /* base64.hpp */,
+				D0534DD71CEEAFE800BB83C1 /* qs_manager.cpp */,
+				D0534DD81CEEAFE800BB83C1 /* qs_manager.hpp */,
+				D0534DDA1CEEB41600BB83C1 /* log_manager.cpp */,
+				D0534DDB1CEEB41600BB83C1 /* log_manager.hpp */,
 			);
 			path = qs;
 			sourceTree = "<group>";
@@ -337,8 +347,10 @@
 				D0CFD1671CCBE1CC00B164D2 /* email_message_creator.cpp in Sources */,
 				D0F788A91CCAD9A200F3B782 /* user_interface.cpp in Sources */,
 				D0F788A61CCAD99200F3B782 /* email_networking_manager.cpp in Sources */,
+				D0534DD91CEEAFE800BB83C1 /* qs_manager.cpp in Sources */,
 				D0C9BEB31CEE839E0051B100 /* base64.cpp in Sources */,
 				D07839181CEA794400E4A03D /* accounts_manager.cpp in Sources */,
+				D0534DDC1CEEB41600BB83C1 /* log_manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -444,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
