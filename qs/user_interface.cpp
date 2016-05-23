@@ -55,13 +55,25 @@ void UserInterface::interactiveAddEmailAccount() {
     cout << "Password: ";
     cin >> password;
     
-    if (AccountsManager::isSupportedEmailDomain(email)) {
-        smtpAddress = AccountsManager::getSupportedDomainSMTP(email);
-        cout << "SMTP Address: " << smtpAddress << '\n';
-    } else {
-        cout << "SMTP Address: ";
-        cin >> smtpAddress;
-    }
+//    doesn't work yet.
+//    if (AccountsManager::isSupportedEmailDomain(email)) {
+//        smtpAddress = AccountsManager::getSupportedDomainSMTP(email);
+//        cout << "SMTP Address: " << smtpAddress << "\r";
+//        string dummy;
+//        string inputSMTP;
+//        getline(cin, dummy);
+//        getline(cin, inputSMTP);
+//        
+//        if (inputSMTP != "\0") {
+//            smtpAddress = inputSMTP;
+//        }
+//    } else {
+//        cout << "SMTP Address: ";
+//        cin >> smtpAddress;
+//    }
+    
+    cout << "SMTP Address: ";
+    cin >> smtpAddress;
     
     cout << "Set to active account? (y/n): ";
     cin >> setActive;
