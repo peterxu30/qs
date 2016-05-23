@@ -12,13 +12,18 @@ string AccountsManager::activeEmailAddress;
 string AccountsManager::activeEmailEncodedPassword;
 string AccountsManager::activeEmailSMTP;
 bool AccountsManager::activeAccountExists = false;
+std::unordered_map<string, string> AccountsManager::supportedEmailDomains {
+    { "gmail.com", "smtp.gmail.com" },
+    { "yahoo.com", "smtp.mail.yahoo.com"}
+};
 
 bool AccountsManager::accountsManagerIsInitialized() {
     return boost::filesystem::exists("qs_data/accountFile.txt");
 }
 
 void AccountsManager::addEmailAccount(string email, string password, string smtpAddress, bool active) {
-    ASSERT(verifyEmailIsValid(email, password, smtpAddress), "Add failed: Information is not valid.");
+    ASSERT(isValidEmailAddress(email), "Add failed: Email address is not of proper format.");
+    ASSERT(verifyEmailIsValid(email, password, smtpAddress), "Add failed: Failed to verify a valid email account with given information.");
     
     string encodedPassword = base64_encode(reinterpret_cast<const unsigned char*>(password.c_str()), 20);
     
@@ -174,8 +179,35 @@ void AccountsManager::switchActiveEmailAccount(string email) {
     rebuildAccountsFile(fileContents);
 }
 
+bool AccountsManager::isSupportedEmailDomain(string email) {
+    ASSERT(isValidEmailAddress(email), "Add failed: Email address is not of proper format.");
+    vector<string> tokens;
+    boost::algorithm::split(tokens, email, boost::algorithm::is_any_of("@"));
+    string domain = tokens[1];
+    if (supportedEmailDomains.find(domain) == supportedEmailDomains.end()) {
+        return false;
+    }
+    return true;
+}
+
+string AccountsManager::getSupportedDomainSMTP(string email) {
+    ASSERT(isSupportedEmailDomain(email), "Illegal call: Domain is not supported for automatic SMTP retrieval.");
+    vector<string> tokens;
+    boost::algorithm::split(tokens, email, boost::algorithm::is_any_of("@"));
+    return supportedEmailDomains.at(tokens[1]);
+}
+
 bool AccountsManager::verifyEmailIsValid(string email, string password, string smptpAddress) {
     return true;
+}
+
+bool AccountsManager::isValidEmailAddress(string email) {
+    vector<string> tokens;
+    size_t atSymbolCount = std::count(email.begin(), email.end(), '@');
+    if (atSymbolCount == 1) {
+        return true;
+    }
+    return false;
 }
 
 void AccountsManager::changeActiveEmailAccountVariables(string email, string encodedPassword, string emailSMTP) {

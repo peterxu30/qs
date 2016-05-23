@@ -55,8 +55,13 @@ void UserInterface::interactiveAddEmailAccount() {
     cout << "Password: ";
     cin >> password;
     
-    cout << "SMTP Address: ";
-    cin >> smtpAddress;
+    if (AccountsManager::isSupportedEmailDomain(email)) {
+        smtpAddress = AccountsManager::getSupportedDomainSMTP(email);
+        cout << "SMTP Address: " << smtpAddress << '\n';
+    } else {
+        cout << "SMTP Address: ";
+        cin >> smtpAddress;
+    }
     
     cout << "Set to active account? (y/n): ";
     cin >> setActive;
@@ -97,19 +102,19 @@ void UserInterface::displayAllEmails() {
 }
 
 int main(int argc, const char * argv[]) {
-    string cwd = getcwd(NULL, 0); //current working directory
-    cout << cwd << endl;
-    
-    vector<string> to = {"peterxu30@berkeley.edu"};
-    
-    //Test
-    std::unordered_map<string, string> attachments;
-//    attachments["qs"] = "qs";
-//    attachments["qs1"] = "qs";
-    
-    MailMessage * email = EmailMessageCreator::createEmail(to, "Test Email", "Hello!", attachments);
-//    EmailNetworkingManager::sendEmail(email);
-    
-    delete email;
+//    string cwd = getcwd(NULL, 0); //current working directory
+//    cout << cwd << endl;
+//    
+//    vector<string> to = {"peterxu30@berkeley.edu"};
+//    
+//    //Test
+//    std::unordered_map<string, string> attachments;
+////    attachments["qs"] = "qs";
+////    attachments["qs1"] = "qs";
+//    
+//    MailMessage * email = EmailMessageCreator::createEmail(to, "Test Email", "Hello!", attachments);
+////    EmailNetworkingManager::sendEmail(email);
+//    
+//    delete email;
     return UserInterface::main(argc, argv);
 }

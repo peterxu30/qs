@@ -14,6 +14,8 @@
 #include <fstream>
 #include <istream>
 #include <iostream>
+#include <set> // replace with map.
+#include <unordered_map>
 #include <vector>
 
 #include <boost/algorithm/string/split.hpp>
@@ -27,6 +29,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 using std::list;
+using std::set;
 using std::string;
 using std::vector;
 
@@ -46,12 +49,16 @@ public:
     static string getActiveEmailAddress();
     static vector<string> getAllEmailsAsStrings();
     static void switchActiveEmailAccount(string email);
+    static bool isSupportedEmailDomain(string email);
+    static string getSupportedDomainSMTP(string email);
 private:
     static string activeEmailAddress;
     static string activeEmailEncodedPassword;
     static string activeEmailSMTP;
     static bool activeAccountExists;
+    static std::unordered_map<string, string> supportedEmailDomains;
     static bool verifyEmailIsValid(string email, string password, string smtpAddress);
+    static bool isValidEmailAddress(string email);
     static void changeActiveEmailAccountVariables(string email, string encodedPassword, string emailSMTP);
     static void rebuildAccountsFile(list<string>& fileContents);
 };

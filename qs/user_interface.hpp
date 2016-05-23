@@ -15,6 +15,9 @@
 #include <unistd.h>
 #include <unordered_map>
 
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/classification.hpp>
+
 #include "accounts_manager.hpp"
 #include "email_networking_manager.hpp"
 #include "email_message_creator.hpp"
