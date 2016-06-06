@@ -24,6 +24,7 @@
 
 #include "base64.hpp"
 #include "error_checking_macros.h"
+#include "utilities.hpp"
 
 using std::cin;
 using std::cout;
@@ -33,6 +34,7 @@ using std::set;
 using std::string;
 using std::vector;
 
+//prime candidate for singleton
 class AccountsManager {
 public:
     struct Account {

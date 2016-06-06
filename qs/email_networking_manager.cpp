@@ -32,7 +32,7 @@ int EmailNetworkingManager::sendEmail(MailMessage * email)
         try {
             session.login(SMTPClientSession::AUTH_LOGIN, user, password);
             session.sendMessage(*email);
-            cout << "Message successfully sent" << endl;
+            cout << "Message successfully sent." << endl;
             session.close();
             uninitializeSSL();
         } catch (SMTPException &e) {

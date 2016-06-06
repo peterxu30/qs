@@ -15,6 +15,7 @@
 #include <boost/filesystem.hpp>
 
 #include "accounts_manager.hpp"
+#include "email_manager.hpp"
 #include "error_checking_macros.h"
 #include "log_manager.hpp"
 #include "user_interface.hpp"

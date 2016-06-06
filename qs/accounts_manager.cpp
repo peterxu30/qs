@@ -218,16 +218,19 @@ void AccountsManager::changeActiveEmailAccountVariables(string email, string enc
 }
 
 void AccountsManager::rebuildAccountsFile(list<string>& fileContents) {
-    FILE* accountsFile;
-    accountsFile = fopen("qs_data/accountFile.txt", "w");
     
-    std::fstream accountsFileStream("qs_data/accountFile.txt");
-    if (accountsFileStream.is_open()) {
-        list<string>::iterator iter = fileContents.begin();
-        list<string>::iterator end = fileContents.end();
-        while (iter != end) {
-            accountsFileStream << *iter << '\n';
-            ++iter;
-        }
-    }
+    Utilities::rebuildFile("qs_data/accountFile.txt", fileContents);
+    
+//    FILE* accountsFile;
+//    accountsFile = fopen("qs_data/accountFile.txt", "w");
+//    
+//    std::fstream accountsFileStream("qs_data/accountFile.txt");
+//    if (accountsFileStream.is_open()) {
+//        list<string>::iterator iter = fileContents.begin();
+//        list<string>::iterator end = fileContents.end();
+//        while (iter != end) {
+//            accountsFileStream << *iter << '\n';
+//            ++iter;
+//        }
+//    }
 }

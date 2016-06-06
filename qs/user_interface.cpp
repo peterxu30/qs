@@ -58,7 +58,13 @@ void UserInterface::interactiveAddEmailAccount() {
 //    doesn't work yet.
 //    if (AccountsManager::isSupportedEmailDomain(email)) {
 //        smtpAddress = AccountsManager::getSupportedDomainSMTP(email);
-//        cout << "SMTP Address: " << smtpAddress << "\r";
+//        cout << "SMTP Address: " << smtpAddress << '\r';
+//        string s = "SMTP Address: " + smtpAddress;
+//        
+//        move(tgetnum("li"), s.size());
+//        refresh();
+////        move(1, 1);
+//        
 //        string dummy;
 //        string inputSMTP;
 //        getline(cin, dummy);
@@ -112,6 +118,8 @@ void UserInterface::displayAllEmails() {
     }
     cout << endl;
 }
+
+//void UserInterface::createNewEmail
 
 int main(int argc, const char * argv[]) {
 //    string cwd = getcwd(NULL, 0); //current working directory
