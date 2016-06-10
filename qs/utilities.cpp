@@ -8,6 +8,16 @@
 
 #include "utilities.hpp"
 
+void Utilities::getFileContents(string filePath, list<string> fileContents) {
+    std::fstream fileStagerStream(filePath);
+    string stageFileLine;
+    if (fileStagerStream.is_open()) {
+        while (getline(fileStagerStream, stageFileLine, '\n')) {
+            fileContents.push_back(stageFileLine);
+        }
+    }
+}
+
 int Utilities::rebuildFile(char * filePath, list<string>& fileContents) {
     FILE* accountsFile;
     accountsFile = fopen(filePath, "w");

@@ -44,14 +44,18 @@ class EmailManager
     
 public:
     static MailMessage * createEmail(vector<string> emailRecipients, string emailSubject, string emailContent);
-    
     static MailMessage * createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
-    
     static int sendEmail(MailMessage * email);
-    
     static int stageFile(string filePath);
-    
+    static int unstageFile(string filePath);
+    static void getAllStagedFiles(list<string> fileContents);
+    static int popAllStagedFiles(list<string> fileContents);
+    static int removeAllStagedFiles();
     static bool fileStagerIsInitialized();
+    
+private:
+    static char * STAGE_FILE_PATH;
+    static string getFullFilePath(string localPath);
     
 };
 

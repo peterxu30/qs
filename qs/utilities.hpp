@@ -25,6 +25,7 @@ using std::string;
 using std::vector;
 
 namespace Utilities {
+    void getFileContents(string filePath, list<string> fileContents);
     int rebuildFile(char * filePath, list<string>& fileContents);
 }
 

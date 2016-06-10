@@ -11,6 +11,8 @@
 
 #include "email_manager.hpp"
 
+char * EmailManager::STAGE_FILE_PATH = "qs_data/stage.txt";
+
 MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent)
 {
     MailMessage * newEmail = new MailMessage();
@@ -91,19 +93,47 @@ int EmailManager::sendEmail(MailMessage * email)
 int EmailManager::stageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
     
-    std::fstream fileStagerStream("qs_data/stage.txt");
+    filePath = getFullFilePath(filePath);
+    
     list<string> fileContents;
-    string stageFileLine;
-    if (fileStagerStream.is_open()) {
-        while (getline(fileStagerStream, stageFileLine, '\n')) {
-            fileContents.push_back(stageFileLine);
-        }
-    }
+    Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
     fileContents.push_back(filePath);
 
-    return Utilities::rebuildFile("qs_data/stage.txt", fileContents);
+    return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
+}
+
+int EmailManager::unstageFile(string filePath) {
+    ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
+    
+    filePath = getFullFilePath(filePath);
+    
+    list<string> fileContents;
+    Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
+    fileContents.remove(filePath);
+    return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
+}
+
+string EmailManager::getFullFilePath(string localPath) {
+    return (string) getcwd(NULL, 0) + "/" + localPath;
+}
+
+void EmailManager::getAllStagedFiles(list<string> fileContents) {
+    Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
+}
+
+int EmailManager::popAllStagedFiles(list<string> fileContents) {
+    getAllStagedFiles(fileContents);
+    return removeAllStagedFiles();
+}
+
+int EmailManager::removeAllStagedFiles() {
+    fopen(STAGE_FILE_PATH, "w");
+    if (fileStagerIsInitialized()) {
+        return 0;
+    }
+    return 1;
 }
 
 bool EmailManager::fileStagerIsInitialized() {
-    return boost::filesystem::exists("qs_data/stage.txt");
+    return boost::filesystem::exists(STAGE_FILE_PATH);
 }

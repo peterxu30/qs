@@ -15,7 +15,7 @@ void QSManager::initializeQuickSend() {
         const char dir_path[] = "qs_data";
         boost::filesystem::path dir(dir_path);
         
-        if(boost::filesystem::create_directory(dir)) {
+        if (boost::filesystem::create_directory(dir)) {
             cout << "No directory detected: Data directory created.\n";
         }
     }
