@@ -35,6 +35,7 @@ using std::cerr;
 using std::cout;
 using std::endl;
 using std::string;
+using std::unordered_map;
 using std::vector;
 using namespace Poco;
 using namespace Poco::Net;
@@ -45,17 +46,19 @@ class EmailManager
 public:
     static MailMessage * createEmail(vector<string> emailRecipients, string emailSubject, string emailContent);
     static MailMessage * createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
+    static MailMessage * createEmailFromStaging(vector<string> emailRecipients, string emailSubject, string emailContent);
     static int sendEmail(MailMessage * email);
     static int stageFile(string filePath);
     static int unstageFile(string filePath);
-    static void getAllStagedFiles(list<string> fileContents);
-    static int popAllStagedFiles(list<string> fileContents);
+    static void getAllStagedFiles(unordered_map<string, string> fileContents);
+    static int popAllStagedFiles(unordered_map<string, string> fileContents);
     static int removeAllStagedFiles();
     static bool fileStagerIsInitialized();
     
 private:
     static char * STAGE_FILE_PATH;
-    static string getFullFilePath(string localPath);
+    static string getFileName(string filePath);
+    static string getAbsoluteFilePath(string localPath);
     
 };
 

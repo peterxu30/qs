@@ -33,6 +33,9 @@ MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string e
     return newEmail;
 }
 
+//NEED TO FIX
+//STAGING FILES ALREADY STORES THE ABSOLUTE FILE PATHS. THE FILE NAMES SHOULD JUST BE THE FILE NAMES. NOT CUSTOM. PERHAPS CHANGE THE WAY FILES ARE TRACKED ON STAGE.TXT.
+// LOCALFILEPATH ABSOLUTEFILEPATH
 MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap)
 {
     MailMessage * newEmail = createEmail(emailRecipients, emailSubject, emailContent);
@@ -51,6 +54,12 @@ MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string e
     }
     
     return newEmail;
+}
+
+MailMessage * EmailManager::createEmailFromStaging(vector<string> emailRecipients, string emailSubject, string emailContent) {
+    unordered_map<string, string> fileAttachmentMap;
+    popAllStagedFiles(fileAttachmentMap);
+    return createEmail(emailRecipients, emailSubject, emailContent, fileAttachmentMap);
 }
 
 int EmailManager::sendEmail(MailMessage * email)
@@ -93,11 +102,15 @@ int EmailManager::sendEmail(MailMessage * email)
 int EmailManager::stageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
     
-    filePath = getFullFilePath(filePath);
+    vector<string> tokens;
+    boost::algorithm::split(tokens, filePath, boost::algorithm::is_any_of("/"));
+    string fileName = tokens[tokens.size() - 1];
+
+    string absoluteFilePath = getAbsoluteFilePath(filePath);
     
     list<string> fileContents;
     Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
-    fileContents.push_back(filePath);
+    fileContents.push_back(fileName + " " + absoluteFilePath);
 
     return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
 }
@@ -105,23 +118,32 @@ int EmailManager::stageFile(string filePath) {
 int EmailManager::unstageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
     
-    filePath = getFullFilePath(filePath);
+    string fileLine = getFileName(filePath) + " " + getAbsoluteFilePath(filePath);
     
     list<string> fileContents;
     Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
-    fileContents.remove(filePath);
+    fileContents.remove(fileLine);
     return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
 }
 
-string EmailManager::getFullFilePath(string localPath) {
-    return (string) getcwd(NULL, 0) + "/" + localPath;
+void EmailManager::getAllStagedFiles(unordered_map<string, string> fileContents) {
+    list<string> fileList;
+    Utilities::getFileContents(STAGE_FILE_PATH, fileList);
+    
+    list<string>::iterator iter = fileList.begin();
+    list<string>::iterator endIter = fileList.end();
+    
+    while (iter != endIter) {
+        string fileLine = *iter;
+        vector<string> tokens;
+        boost::algorithm::split(tokens, fileLine, boost::algorithm::is_any_of(" "));
+        ASSERT(tokens.size() == 2, "Staging File Error: Something dun goofed.");
+        fileContents[tokens[0]] = tokens[1];
+        iter++;
+    }
 }
 
-void EmailManager::getAllStagedFiles(list<string> fileContents) {
-    Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
-}
-
-int EmailManager::popAllStagedFiles(list<string> fileContents) {
+int EmailManager::popAllStagedFiles(unordered_map<string, string> fileContents) {
     getAllStagedFiles(fileContents);
     return removeAllStagedFiles();
 }
@@ -136,4 +158,14 @@ int EmailManager::removeAllStagedFiles() {
 
 bool EmailManager::fileStagerIsInitialized() {
     return boost::filesystem::exists(STAGE_FILE_PATH);
+}
+
+string EmailManager::getFileName(string filePath) {
+    vector<string> tokens;
+    boost::algorithm::split(tokens, filePath, boost::algorithm::is_any_of("/"));
+    return tokens[tokens.size() - 1];
+}
+
+string EmailManager::getAbsoluteFilePath(string localPath) {
+    return (string) getcwd(NULL, 0) + "/" + localPath;
 }
