@@ -18,7 +18,7 @@ void Utilities::getFileContents(string filePath, list<string> fileContents) {
     }
 }
 
-int Utilities::rebuildFile(char * filePath, list<string>& fileContents) {
+int Utilities::rebuildFile(const char * filePath, list<string>& fileContents) {
     FILE* accountsFile;
     accountsFile = fopen(filePath, "w");
     

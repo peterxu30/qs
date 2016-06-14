@@ -33,24 +33,22 @@ MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string e
     return newEmail;
 }
 
-//NEED TO FIX
-//STAGING FILES ALREADY STORES THE ABSOLUTE FILE PATHS. THE FILE NAMES SHOULD JUST BE THE FILE NAMES. NOT CUSTOM. PERHAPS CHANGE THE WAY FILES ARE TRACKED ON STAGE.TXT.
-// LOCALFILEPATH ABSOLUTEFILEPATH
+// Assumes filepaths are already absolute
 MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap)
 {
     MailMessage * newEmail = createEmail(emailRecipients, emailSubject, emailContent);
     
-    string currentWorkingDirectory = getcwd(NULL, 0);
+//    string currentWorkingDirectory = getcwd(NULL, 0);
     
     for (std::unordered_map<string, string>::iterator i = fileAttachmentMap.begin(); i != fileAttachmentMap.end(); i++) {
         string fileAttachmentName = i->first;
-        string relativeFileAttachmentPath = i->second;
+        string fileAttachmentPath = i->second;
         
         std::stringstream absoluteFileAttachmentPathStream;
-        absoluteFileAttachmentPathStream << currentWorkingDirectory << "/" << relativeFileAttachmentPath;
-        string absoluteFileAttachmentPath = absoluteFileAttachmentPathStream.str();
+//        absoluteFileAttachmentPathStream << currentWorkingDirectory << "/" << relativeFileAttachmentPath;
+//        string absoluteFileAttachmentPath = absoluteFileAttachmentPathStream.str();
         
-        newEmail->addAttachment(fileAttachmentName, new FilePartSource(absoluteFileAttachmentPath));
+        newEmail->addAttachment(fileAttachmentName, new FilePartSource(fileAttachmentPath));
     }
     
     return newEmail;
@@ -168,4 +166,47 @@ string EmailManager::getFileName(string filePath) {
 
 string EmailManager::getAbsoluteFilePath(string localPath) {
     return (string) getcwd(NULL, 0) + "/" + localPath;
+}
+
+void EmailManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent) {
+    logEmail(sender, emailRecipients, emailSubject, emailContent, unordered_map<string, string>());
+}
+
+void EmailManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap) {
+    boost::uuids::uuid logID = (boost::uuids::random_generator()());
+    list<string> fileContents;
+    const char * logFilePath = (boost::lexical_cast<string>(logID) + ".txt").c_str();
+    addEmailToLog(logFilePath);
+
+    string senderLine = "Sender: " + sender + "\n";
+    fileContents.push_back(senderLine);
+    
+    string recipientsLine = "Recipients:";
+    vector<string>::iterator iter = emailRecipients.begin();
+    vector<string>::iterator end = emailRecipients.end();
+    while (iter != end) {
+        recipientsLine += " " + *iter;
+        iter++;
+    }
+    recipientsLine += "\n";
+    fileContents.push_back(recipientsLine);
+    
+    string subjectLine = "Subject: " + emailSubject + "\n";
+    fileContents.push_back(subjectLine);
+    
+    string contentLine = "Content: " + emailContent + "\n";
+    fileContents.push_back(contentLine);
+    
+    string attachmentsLine = "Attachments:";
+    for (auto kv : fileAttachmentMap) {
+        attachmentsLine += " " + kv.second;
+    }
+    attachmentsLine += "\n";
+    fileContents.push_back(attachmentsLine);
+    
+    Utilities::rebuildFile(logFilePath, fileContents);
+}
+
+void EmailManager::addEmailToLog(string fileName) {
+    //fill in later
 }
