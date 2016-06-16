@@ -12,6 +12,7 @@
 #include "email_manager.hpp"
 
 char * EmailManager::STAGE_FILE_PATH = "qs_data/stage.txt";
+char * EmailManager::LOG_FILE_PATH = "qs_data/log.txt";
 
 MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent)
 {
@@ -207,6 +208,9 @@ void EmailManager::logEmail(string sender, vector<string> emailRecipients, strin
     Utilities::rebuildFile(logFilePath, fileContents);
 }
 
-void EmailManager::addEmailToLog(string fileName) {
-    //fill in later
+void EmailManager::addEmailToLog(string fileName) { //maybe add more details later
+    list<string> fileContents;
+    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
+    fileContents.push_front(fileName);
+    Utilities::rebuildFile(LOG_FILE_PATH, fileContents);
 }

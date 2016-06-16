@@ -64,6 +64,7 @@ public:
     
 private:
     static char * STAGE_FILE_PATH;
+    static char * LOG_FILE_PATH;
     static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent);
     static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
     static void addEmailToLog(string fileName);
