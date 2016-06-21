@@ -49,11 +49,12 @@ public:
     static void deleteAllEmailAccounts();
     static AccountsManager::Account getActiveEmailAccount();
     static string getActiveEmailAddress();
-    static vector<string> getAllEmailsAsStrings();
+    static list<string> getAllEmailsAsStrings();
     static void switchActiveEmailAccount(string email);
     static bool isSupportedEmailDomain(string email);
     static string getSupportedDomainSMTP(string email);
 private:
+    static char * ACCOUNT_FILE_PATH;
     static string activeEmailAddress;
     static string activeEmailEncodedPassword;
     static string activeEmailSMTP;

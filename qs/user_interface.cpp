@@ -20,7 +20,7 @@ int UserInterface::main(int argc, const char * argv[]) {
         } else if (command == "delete") {
             interactiveDeleteEmailAccount(argc, argv);
         } else if (command == "display") {
-            displayAllEmails();
+            displayAllEmailAddresses();
         }else if (command == "rm") {
             cout << "Removed" << endl;
         } else if (command == "new") {
@@ -105,16 +105,22 @@ void UserInterface::interactiveDeleteEmailAccount(int argc, const char* argv[]) 
     }
 }
 
-void UserInterface::displayAllEmails() {
-    vector<string> emailsAsStrings = AccountsManager::getAllEmailsAsStrings();
-    
-    vector<string>::iterator iter = emailsAsStrings.begin();
-    vector<string>::iterator end = emailsAsStrings.end();
+void UserInterface::displayAllEmailAddresses() {
+    list<string> emailsAsStrings = AccountsManager::getAllEmailsAsStrings();
     
     cout << "Email Address  |  SMTP Address\n";
-    while (iter != end) {
-        cout << *iter << '\n';
-        ++iter;
+    for (string emailAddress : emailsAsStrings) {
+        cout << emailAddress << '\n';
+    }
+    cout << endl;
+}
+
+void UserInterface::displayAllEmailMessages() {
+    list<string> emailMessages = EmailManager::getAllSentMessages();
+    
+    cout << "Message Log\n";
+    for (string emailMessage : emailMessages) {
+        cout << emailMessage << '\n';
     }
     cout << endl;
 }

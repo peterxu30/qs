@@ -98,6 +98,12 @@ int EmailManager::sendEmail(MailMessage * email)
     return 0;
 }
 
+list<string> EmailManager::getAllSentMessages() {
+    list<string> fileContents;
+    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
+    return fileContents;
+}
+
 int EmailManager::stageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
     

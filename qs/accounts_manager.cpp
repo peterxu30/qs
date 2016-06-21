@@ -8,6 +8,8 @@
 
 #include "accounts_manager.hpp"
 
+char * ACCOUNT_FILE_PATH = "qs_data/accountFile.txt";
+
 string AccountsManager::activeEmailAddress;
 string AccountsManager::activeEmailEncodedPassword;
 string AccountsManager::activeEmailSMTP;
@@ -18,7 +20,7 @@ std::unordered_map<string, string> AccountsManager::supportedEmailDomains {
 };
 
 bool AccountsManager::accountsManagerIsInitialized() {
-    return boost::filesystem::exists("qs_data/accountFile.txt");
+    return boost::filesystem::exists(ACCOUNT_FILE_PATH);
 }
 
 void AccountsManager::addEmailAccount(string email, string password, string smtpAddress, bool active) {
@@ -27,66 +29,62 @@ void AccountsManager::addEmailAccount(string email, string password, string smtp
     
     string encodedPassword = base64_encode(reinterpret_cast<const unsigned char*>(password.c_str()), 20);
     
-    std::ifstream accountsFile("qs_data/accountFile.txt");
     list<string> fileContents;
-    string accountLine;
-    if (accountsFile.is_open()) {
-        while (getline(accountsFile, accountLine, '\n')) {
-            vector<string> tokens;
-            boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-            
-            if (active && tokens.size() == 4) {
-                size_t len = accountLine.size();
-                accountLine.erase(len-1, 2);
-            }
-            
-            if (email != tokens[0]) {
-                fileContents.push_back(accountLine);
-            }
+    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
+    list<string> updatedFileContents;
+    for (string accountLine : fileContents) {
+        vector<string> tokens;
+        boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
+        
+        if (active && tokens.size() == 4) {
+            size_t len = accountLine.size();
+            accountLine.erase(len-1, 2);
+        }
+        
+        if (email != tokens[0]) {
+            updatedFileContents.push_back(accountLine);
         }
     }
     
     if (active) {
-        fileContents.push_front(email + " " + encodedPassword + " " + smtpAddress + " *");
+        updatedFileContents.push_front(email + " " + encodedPassword + " " + smtpAddress + " *");
         changeActiveEmailAccountVariables(email, encodedPassword, smtpAddress);
     } else {
-        fileContents.push_back(email + " " + encodedPassword + " " + smtpAddress);
+        updatedFileContents.push_back(email + " " + encodedPassword + " " + smtpAddress);
     }
     
-    rebuildAccountsFile(fileContents);
+    rebuildAccountsFile(updatedFileContents);
 }
 
 bool AccountsManager::deleteEmailAccount(string email) {
-    std::ifstream accountsFileStream("qs_data/accountFile.txt");
     list<string> fileContents;
-    string accountLine;
+    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
+    list<string> updatedFileContents;
     bool deleted = false;
-    if (accountsFileStream.is_open()) {
-        while (getline(accountsFileStream, accountLine, '\n')) {
-            vector<string> tokens;
-            boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-            
-            if (email == tokens[0]) {
-                if (tokens.size() == 4) {
-                    AccountsManager::activeAccountExists = false;
-                }
-                deleted = true;
-            } else {
-                fileContents.push_back(accountLine);
+    for (string accountLine : fileContents) {
+        vector<string> tokens;
+        boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
+        
+        if (email == tokens[0]) {
+            if (tokens.size() == 4) {
+                AccountsManager::activeAccountExists = false;
             }
+            deleted = true;
+        } else {
+            updatedFileContents.push_back(accountLine);
         }
     }
     
-    rebuildAccountsFile(fileContents);
+    rebuildAccountsFile(updatedFileContents);
     return deleted;
 }
 
 AccountsManager::Account AccountsManager::getActiveEmailAccount() {
-    std::ifstream accountsFileStream("qs_data/accountFile.txt");
-    string accountLine;
+    list<string> fileContents;
+    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
     bool activeExists = false;
-    if (!AccountsManager::activeAccountExists && accountsFileStream.is_open()) {
-        while (getline(accountsFileStream, accountLine, '\n')) {
+    if (!AccountsManager::activeAccountExists) {
+        for (string accountLine : fileContents) {
             vector<string> tokens;
             boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
             
@@ -121,24 +119,23 @@ AccountsManager::Account AccountsManager::getActiveEmailAccount() {
     return activeAccount;
 }
 
-vector<string> AccountsManager::getAllEmailsAsStrings() {
-    std::ifstream accountsFileStream("qs_data/accountFile.txt");
-    string accountLine;
-    vector<string> emailsAsStrings;
-    if (accountsFileStream.is_open()) {
-        while (getline(accountsFileStream, accountLine, '\n')) {
-            vector<string> tokens;
-            boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-            
-            string accountWithoutPassword;
-            if (tokens.size() == 4) {
-                accountWithoutPassword = tokens[0] + " " + tokens[2] + " *";
-            } else {
-                accountWithoutPassword = tokens[0] + " " + tokens[2];
-            }
-            
-            emailsAsStrings.push_back(accountWithoutPassword);
+list<string> AccountsManager::getAllEmailsAsStrings() {
+    list<string> fileContents;
+    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
+
+    list<string> emailsAsStrings;
+    for (string accountLine : fileContents) {
+        vector<string> tokens;
+        boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
+        
+        string accountWithoutPassword;
+        if (tokens.size() == 4) {
+            accountWithoutPassword = tokens[0] + " " + tokens[2] + " *";
+        } else {
+            accountWithoutPassword = tokens[0] + " " + tokens[2];
         }
+        
+        emailsAsStrings.push_back(accountWithoutPassword);
     }
     return emailsAsStrings;
 }
@@ -148,7 +145,7 @@ string AccountsManager::getActiveEmailAddress() {
 }
 
 void AccountsManager::switchActiveEmailAccount(string email) {
-    std::ifstream accountsFileStream("qs_data/accountFile.txt");
+    std::ifstream accountsFileStream(ACCOUNT_FILE_PATH);
     list<string> fileContents;
     string accountLine;
     bool exists = false;

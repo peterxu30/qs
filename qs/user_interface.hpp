@@ -37,7 +37,8 @@ public:
     static void interactiveAddEmailAccount();
     static void interactiveDeleteEmailAccount(int argc, const char* argv[]);
     static void interactiveSendEmail();
-    static void displayAllEmails();
+    static void displayAllEmailAddresses();
+    static void displayAllEmailMessages();
 };
 
 int main(int argc, const char * argv[]);

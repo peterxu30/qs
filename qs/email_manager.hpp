@@ -54,6 +54,7 @@ public:
     static MailMessage * createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
     static MailMessage * createEmailFromStaging(vector<string> emailRecipients, string emailSubject, string emailContent);
     static int sendEmail(MailMessage * email);
+    static list<string> getAllSentMessages();
     static int stageFile(string filePath);
     static int unstageFile(string filePath);
     static void getAllStagedFiles(unordered_map<string, string> fileContents);
