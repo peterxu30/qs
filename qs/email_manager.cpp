@@ -171,6 +171,21 @@ string EmailManager::getFileName(string filePath) {
     return tokens[tokens.size() - 1];
 }
 
+bool EmailManager::fileIsStaged(string filePath) {
+    string fileName = getFileName(filePath);
+    list<string> fileContents;
+    Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
+    
+    for (string fileLine : fileContents) {
+        vector<string> tokens;
+        boost::algorithm::split(tokens, fileLine, boost::algorithm::is_any_of(" "));
+        if (tokens[0] == fileName) {
+            return true;
+        }
+    }
+    return false;    
+}
+
 string EmailManager::getAbsoluteFilePath(string localPath) {
     return (string) getcwd(NULL, 0) + "/" + localPath;
 }

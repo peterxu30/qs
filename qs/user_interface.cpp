@@ -15,20 +15,32 @@ int UserInterface::main(int argc, const char * argv[]) {
         
         if (command == "init") {
             QSManager::initializeQuickSend();
+        } else if (command == "new") {
+            if (argc == 4) {
+                string emailType = argv[2];
+                if (emailType == "msg") {
+                    
+                } else if (emailType == "file") {
+                    
+                } else if (emailType == "full") {
+                    
+                } else {
+                    cout << "Command failed: " << emailType <<
+                    " is not an accepted message type." << endl;
+                }
+            } else {
+                cout << "Command failed: " << "Unacceptable amount of arguments." << endl;
+            }
         } else if (command == "add") {
             interactiveAddEmailAccount();
-        } else if (command == "delete") {
+        } else if (command == "clear") {
+            
+        } else if (command == "log") {
+            displayAllEmailMessages();
+        } else if (command == "switch") {
+            
+        } else if (command == "rm") {
             interactiveDeleteEmailAccount(argc, argv);
-        } else if (command == "display") {
-            displayAllEmailAddresses();
-        }else if (command == "rm") {
-            cout << "Removed" << endl;
-        } else if (command == "new") {
-            cout << "New Email" << endl;
-        } else if (command == "dl") {
-            cout << "File downloaded." << endl;
-        } else if (command == "login") {
-            cout << "Login" << endl;
         } else {
             cout << "Command failed: " << command << " is not a qs command." << endl;
         }
@@ -102,6 +114,18 @@ void UserInterface::interactiveDeleteEmailAccount(int argc, const char* argv[]) 
         }
     } else {
         cout << "Delete failed: Improper amount of arguments." << endl;
+    }
+}
+
+void UserInterface::interactiveNewEmail(int argc, const char * argv[]) {
+    if (argc == 3) {
+        if (argv[2] == "msg") { //just msg
+            
+        } else if (argv[2] == "file") { //just attachment
+            
+        } else if (argv[2] == "full") { //msg + attachment
+            
+        }
     }
 }
 

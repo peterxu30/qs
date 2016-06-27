@@ -21,8 +21,6 @@
 #include <boost/algorithm/string/classification.hpp>
 
 #include "accounts_manager.hpp"
-//#include "email_networking_manager.hpp"
-//#include "email_message_creator.hpp"
 #include "email_manager.hpp"
 #include "qs_manager.hpp"
 
@@ -36,7 +34,7 @@ public:
     static int main(int argc, const char * argv[]);
     static void interactiveAddEmailAccount();
     static void interactiveDeleteEmailAccount(int argc, const char* argv[]);
-    static void interactiveSendEmail();
+    static void interactiveNewEmail(int argc, const char * argv[]);
     static void displayAllEmailAddresses();
     static void displayAllEmailMessages();
 };

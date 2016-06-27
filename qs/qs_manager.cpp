@@ -26,12 +26,11 @@ void QSManager::initializeQuickSend() {
     }
     
     if (!LogManager::logIsInitialized()) {
-//        std::ofstream logFile("qs_data/log.txt");
         fopen("qs_data/log.txt", "w");
         cout << "No log file detected: Log file created.\n";
     }
     
-    if (!EmailManager::fileStagerIsInitialized()) { //replace with proper condition later
+    if (!EmailManager::fileStagerIsInitialized()) {
         fopen("qs_data/stage.txt", "w");
         cout << "No staging file detected: File stager created.\n";
 

@@ -60,6 +60,7 @@ public:
     static void getAllStagedFiles(unordered_map<string, string> fileContents);
     static int popAllStagedFiles(unordered_map<string, string> fileContents);
     static int removeAllStagedFiles();
+    static bool fileIsStaged(string filePath);
     static string getAbsoluteFilePath(string localPath);
     static bool fileStagerIsInitialized();
     
