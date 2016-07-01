@@ -9,6 +9,8 @@
 #include "user_interface.hpp"
 
 int UserInterface::main(int argc, const char * argv[]) {
+    // list<tokens> tokens = Tokenizer::tokenize(argc, argv);
+    
     if (argc > 1) {
         string command = argv[1];
         std::transform(command.begin(), command.end(), command.begin(), ::tolower);

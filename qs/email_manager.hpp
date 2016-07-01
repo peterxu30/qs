@@ -35,6 +35,7 @@
 #include <Poco/Net/SSLManager.h>
 
 #include "accounts_manager.hpp"
+#include "error_checking_macros.h"
 #include "utilities.hpp"
 
 using std::cerr;
