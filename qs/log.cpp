@@ -10,5 +10,5 @@
 
 void Log::execute() {
     ASSERT(this->flags.size() == 0, "fatal: log can have zero flags");
-    
+    UserInterface::displayAllEmailMessages();
 }

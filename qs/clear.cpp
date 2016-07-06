@@ -7,3 +7,7 @@
 //
 
 #include "clear.hpp"
+
+void Clear::execute() {
+    EmailManager::removeAllStagedFiles();
+}

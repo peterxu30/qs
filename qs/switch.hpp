@@ -10,8 +10,12 @@
 #define switch_hpp
 
 #include <stdio.h>
+#include <iostream>
 
 #include "action.hpp"
+#include "accounts_manager.hpp"
+
+using std::cout;
 
 class Switch : public Action {
 public:

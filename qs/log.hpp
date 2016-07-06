@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include "action.hpp"
+#include "user_interface.hpp"
 
 class Log : public Action {
 public:

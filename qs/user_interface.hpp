@@ -22,7 +22,9 @@
 
 #include "accounts_manager.hpp"
 #include "email_manager.hpp"
+#include "interpreter.hpp"
 #include "qs_manager.hpp"
+#include "tokenizer.hpp"
 
 using std::cin;
 using std::cout;

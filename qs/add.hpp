@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include "action.hpp"
+#include "email_manager.hpp"
 
 class Add : public Action {
 public:

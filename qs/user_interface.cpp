@@ -168,5 +168,7 @@ int main(int argc, const char * argv[]) {
 ////    EmailNetworkingManager::sendEmail(email);
 //    
 //    delete email;
-    return UserInterface::main(argc, argv);
+    list<Token *> tokens = Tokenizer::tokenize(argc, argv);
+    Interpreter::eval(tokens);
+//    return UserInterface::main(argc, argv);
 }

@@ -106,18 +106,21 @@ list<string> EmailManager::getAllSentMessages() {
 
 int EmailManager::stageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
-    
-    vector<string> tokens;
-    boost::algorithm::split(tokens, filePath, boost::algorithm::is_any_of("/"));
-    string fileName = tokens[tokens.size() - 1];
 
-    string absoluteFilePath = getAbsoluteFilePath(filePath);
-    
-    list<string> fileContents;
-    Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
-    fileContents.push_back(fileName + " " + absoluteFilePath);
-
-    return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
+    if (!fileIsStaged(filePath)) {
+        vector<string> tokens;
+        boost::algorithm::split(tokens, filePath, boost::algorithm::is_any_of("/"));
+        string fileName = tokens[tokens.size() - 1];
+        
+        string absoluteFilePath = getAbsoluteFilePath(filePath);
+        
+        list<string> fileContents;
+        Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
+        fileContents.push_back(fileName + " " + absoluteFilePath);
+        
+        return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
+    }
+    return 0;
 }
 
 int EmailManager::unstageFile(string filePath) {

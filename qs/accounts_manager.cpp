@@ -8,7 +8,7 @@
 
 #include "accounts_manager.hpp"
 
-char * ACCOUNT_FILE_PATH = "qs_data/accountFile.txt";
+char * AccountsManager::ACCOUNT_FILE_PATH = "qs_data/accountFile.txt";
 
 string AccountsManager::activeEmailAddress;
 string AccountsManager::activeEmailEncodedPassword;

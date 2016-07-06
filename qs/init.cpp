@@ -9,5 +9,6 @@
 #include "init.hpp"
 
 void Init::execute() {
+    ASSERT(this->flags.size() == 0, "fatal: new can have zero flags");
     QSManager::initializeQuickSend();
 }

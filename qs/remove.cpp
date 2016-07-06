@@ -7,3 +7,7 @@
 //
 
 #include "remove.hpp"
+
+void Remove::execute() {
+    
+}

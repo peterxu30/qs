@@ -9,19 +9,21 @@
 #include "new.hpp"
 
 void New::execute() {
-    ASSERT(this->flags.size() == 1, "fatal: new can have zero or one flags");
+    ASSERT(this->flags.size() <= 1, "fatal: new can have zero or one flags");
     
     if (!this->flags.empty()) {
         Token::Type flag = flags.front();
         
-        if (flag == Token::MSG) {
-            
-        } else if (flag == Token::FILE) {
-            
-        } else if (flag == Token::FULL) {
-            
-        } else {
-            std::cout << "fatal: unrecognized argument: " << flag << std::endl;
+        switch (flag) {
+            case Token::MSG:
+                break;
+            case Token::FILE:
+                break;
+            case Token::FULL:
+                break;
+            default:
+                std::cout << "fatal: unrecognized argument: " << flag << std::endl;
+                break;
         }
     } else {
         

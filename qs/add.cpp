@@ -7,3 +7,9 @@
 //
 
 #include "add.hpp"
+
+void Add::execute() {
+    for (string fileName : this->args) {
+        EmailManager::stageFile(fileName);
+    }
+}

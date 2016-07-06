@@ -8,7 +8,7 @@
 
 #include "tokenizer.hpp"
 
-list<Token *> tokenize(int rawc, const char * raw[]) {
+list<Token *> Tokenizer::tokenize(int rawc, const char * raw[]) {
     list<Token *> tokens;
     
     int index = 1;
