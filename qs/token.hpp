@@ -22,6 +22,7 @@ public:
         ADD,
         CLEAR,
         LOG,
+        STATUS,
         SWITCH,
         REMOVE,
         MSG,

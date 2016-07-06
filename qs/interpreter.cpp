@@ -35,6 +35,9 @@ void Interpreter::eval(list<Token *> tokens) {
         case Token::LOG:
             action = new Log();
             break;
+        case Token::STATUS:
+            action = new Status();
+            break;
         case Token::SWITCH:
             action = new Switch();
             break;

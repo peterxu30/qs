@@ -58,8 +58,8 @@ public:
     static list<string> getAllSentMessages();
     static int stageFile(string filePath);
     static int unstageFile(string filePath);
-    static void getAllStagedFiles(unordered_map<string, string> fileContents);
-    static int popAllStagedFiles(unordered_map<string, string> fileContents);
+    static void getAllStagedFiles(unordered_map<string, string>& fileContents);
+    static int popAllStagedFiles(unordered_map<string, string>& fileContents);
     static int removeAllStagedFiles();
     static bool fileIsStaged(string filePath);
     static string getAbsoluteFilePath(string localPath);

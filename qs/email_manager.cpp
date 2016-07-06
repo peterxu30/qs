@@ -134,7 +134,7 @@ int EmailManager::unstageFile(string filePath) {
     return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
 }
 
-void EmailManager::getAllStagedFiles(unordered_map<string, string> fileContents) {
+void EmailManager::getAllStagedFiles(unordered_map<string, string>& fileContents) {
     list<string> fileList;
     Utilities::getFileContents(STAGE_FILE_PATH, fileList);
     
@@ -151,7 +151,7 @@ void EmailManager::getAllStagedFiles(unordered_map<string, string> fileContents)
     }
 }
 
-int EmailManager::popAllStagedFiles(unordered_map<string, string> fileContents) {
+int EmailManager::popAllStagedFiles(unordered_map<string, string>& fileContents) {
     getAllStagedFiles(fileContents);
     return removeAllStagedFiles();
 }

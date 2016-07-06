@@ -1,22 +1,22 @@
 //
-//  remove.hpp
+//  status.hpp
 //  qs
 //
-//  Created by Peter Xu on 6/30/16.
+//  Created by Peter Xu on 7/5/16.
 //  Copyright © 2016 Peter Xu. All rights reserved.
 //
 
-#ifndef remove_hpp
-#define remove_hpp
+#ifndef status_hpp
+#define status_hpp
 
 #include <stdio.h>
-
 #include "action.hpp"
 #include "email_manager.hpp"
+#include <unordered_map>
 
-class Remove : public Action {
+class Status : public Action {
 public:
     void execute() override;
 };
 
-#endif /* remove_hpp */
+#endif /* status_hpp */

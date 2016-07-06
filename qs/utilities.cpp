@@ -8,7 +8,7 @@
 
 #include "utilities.hpp"
 
-void Utilities::getFileContents(string filePath, list<string> fileContents) {
+void Utilities::getFileContents(string filePath, list<string>& fileContents) {
     std::fstream fileStagerStream(filePath);
     string stageFileLine;
     if (fileStagerStream.is_open()) {

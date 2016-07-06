@@ -21,6 +21,7 @@
 #include "log.hpp"
 #include "new.hpp"
 #include "remove.hpp"
+#include "status.hpp"
 #include "switch.hpp"
 #include "token.hpp"
 

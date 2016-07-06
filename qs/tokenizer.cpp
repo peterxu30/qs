@@ -27,6 +27,8 @@ list<Token *> Tokenizer::tokenize(int rawc, const char * raw[]) {
             type = Token::CLEAR;
         } else if (currentString == "log") {
             type = Token::LOG;
+        } else if (currentString == "status") {
+            type = Token::STATUS;
         } else if (currentString == "switch") {
             type = Token::SWITCH;
         } else if (currentString == "rm") {
