@@ -24,6 +24,7 @@
 #include "status.hpp"
 #include "switch.hpp"
 #include "token.hpp"
+#include "users.hpp"
 
 using std::list;
 

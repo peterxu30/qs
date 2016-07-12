@@ -16,7 +16,7 @@ void Interpreter::eval(list<Token *> tokens) {
     tokens.pop_front();
 
     
-    Action * action;
+    Action * action = nullptr;
     Token::Type type = token->type;
     
     switch (type) {
@@ -35,18 +35,20 @@ void Interpreter::eval(list<Token *> tokens) {
         case Token::LOG:
             action = new Log();
             break;
+        case Token::REMOVE:
+            action = new Remove();
+            break;
         case Token::STATUS:
             action = new Status();
             break;
         case Token::SWITCH:
             action = new Switch();
             break;
-        case Token::REMOVE:
-            action = new Remove();
+        case Token::USERS:
+            action = new Users();
             break;
         default:
-            std::cerr << "fatal: " << token->tokenString << " is not a recognized command.";
-            std::terminate();
+            std::cerr << "fatal: " << token->tokenString << " is not a recognized command." << std::endl;
             break;
     }
     
@@ -65,4 +67,5 @@ void Interpreter::eval(list<Token *> tokens) {
     }
     
     action->execute();
+    delete action; //fix
 }

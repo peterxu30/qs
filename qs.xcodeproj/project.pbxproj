@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D00027DD1CF2D4F6004AAE7F /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D00027DC1CF2D4F6004AAE7F /* libcurses.tbd */; };
+		D001D0801D34A7C0009F33CF /* users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D001D07E1D34A7C0009F33CF /* users.cpp */; };
 		D0534DD91CEEAFE800BB83C1 /* qs_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0534DD71CEEAFE800BB83C1 /* qs_manager.cpp */; };
 		D0534DDC1CEEB41600BB83C1 /* log_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0534DDA1CEEB41600BB83C1 /* log_manager.cpp */; };
 		D07839181CEA794400E4A03D /* accounts_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07839161CEA794400E4A03D /* accounts_manager.cpp */; };
@@ -91,6 +92,8 @@
 
 /* Begin PBXFileReference section */
 		D00027DC1CF2D4F6004AAE7F /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
+		D001D07E1D34A7C0009F33CF /* users.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = users.cpp; sourceTree = "<group>"; };
+		D001D07F1D34A7C0009F33CF /* users.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = users.hpp; sourceTree = "<group>"; };
 		D0534DD71CEEAFE800BB83C1 /* qs_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = qs_manager.cpp; sourceTree = "<group>"; };
 		D0534DD81CEEAFE800BB83C1 /* qs_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qs_manager.hpp; sourceTree = "<group>"; };
 		D0534DDA1CEEB41600BB83C1 /* log_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log_manager.cpp; sourceTree = "<group>"; };
@@ -273,6 +276,8 @@
 				D0BD21B51D2639C70053B543 /* remove.hpp */,
 				D0A7D7F11D2CB74A00CDE045 /* status.cpp */,
 				D0A7D7F21D2CB74A00CDE045 /* status.hpp */,
+				D001D07E1D34A7C0009F33CF /* users.cpp */,
+				D001D07F1D34A7C0009F33CF /* users.hpp */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -454,6 +459,7 @@
 				D07839181CEA794400E4A03D /* accounts_manager.cpp in Sources */,
 				D0BD21B31D26398B0053B543 /* switch.cpp in Sources */,
 				D0BD21B01D2639710053B543 /* log.cpp in Sources */,
+				D001D0801D34A7C0009F33CF /* users.cpp in Sources */,
 				D0534DDC1CEEB41600BB83C1 /* log_manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

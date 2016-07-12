@@ -10,9 +10,10 @@
 #define status_hpp
 
 #include <stdio.h>
+#include <unordered_map>
+
 #include "action.hpp"
 #include "email_manager.hpp"
-#include <unordered_map>
 
 class Status : public Action {
 public:

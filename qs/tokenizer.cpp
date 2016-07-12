@@ -28,12 +28,14 @@ list<Token *> Tokenizer::tokenize(int rawc, const char * raw[]) {
             type = Token::CLEAR;
         } else if (loweredCurrentString == "log") {
             type = Token::LOG;
+        } else if (loweredCurrentString == "rm") {
+            type = Token::REMOVE;
         } else if (loweredCurrentString == "status") {
             type = Token::STATUS;
         } else if (loweredCurrentString == "switch") {
             type = Token::SWITCH;
-        } else if (loweredCurrentString == "rm") {
-            type = Token::REMOVE;
+        } else if (loweredCurrentString == "users") {
+            type = Token::USERS;
         } else if (loweredCurrentString == "-msg") {
             type = Token::MSG;
         } else if (loweredCurrentString == "-file") {

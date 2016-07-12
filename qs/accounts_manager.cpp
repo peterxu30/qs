@@ -105,17 +105,6 @@ AccountsManager::Account AccountsManager::getActiveEmailAccount() {
     activeAccount.password = base64_decode(activeEmailEncodedPassword);
     activeAccount.smtpAddress = activeEmailSMTP;
     
-//    if (!AccountsManager::activeAccountExists && !activeExists) {
-//        cout << "Failure: No active account selected.";
-//        
-//        activeAccount.email = "NULL";
-//        activeAccount.password = "NULL";
-//        activeAccount.smtpAddress = "NULL";
-//    } else {
-//        activeAccount.email = activeEmailAddress;
-//        activeAccount.password = base64_decode(activeEmailEncodedPassword);
-//        activeAccount.smtpAddress = activeEmailSMTP;
-//    }
     return activeAccount;
 }
 
@@ -130,9 +119,9 @@ list<string> AccountsManager::getAllEmailsAsStrings() {
         
         string accountWithoutPassword;
         if (tokens.size() == 4) {
-            accountWithoutPassword = tokens[0] + " " + tokens[2] + " *";
+            accountWithoutPassword = "* " + tokens[0];
         } else {
-            accountWithoutPassword = tokens[0] + " " + tokens[2];
+            accountWithoutPassword = tokens[0];
         }
         
         emailsAsStrings.push_back(accountWithoutPassword);

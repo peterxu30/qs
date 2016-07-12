@@ -22,9 +22,10 @@ public:
         ADD,
         CLEAR,
         LOG,
+        REMOVE,
         STATUS,
         SWITCH,
-        REMOVE,
+        USERS,
         MSG,
         FILE,
         FULL,
@@ -41,7 +42,7 @@ public:
     bool isFlag();
 
 private:
-    const int numberOfCommands = 7;
+    const int numberOfCommands = 8;
     const int numberOfFlags = 4;
 };
 
