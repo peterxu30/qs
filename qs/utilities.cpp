@@ -35,3 +35,8 @@ int Utilities::rebuildFile(const char * filePath, list<string>& fileContents) {
     }
     return 0;
 }
+
+string Utilities::toLowerCase(string str) {
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
+}

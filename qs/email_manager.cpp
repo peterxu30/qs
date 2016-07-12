@@ -18,7 +18,6 @@ MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string e
 {
     MailMessage * newEmail = new MailMessage();
     
-    //    newEmail->setSender("atdpjava15@gmail.com"); //temporary sender
     newEmail->setSender(AccountsManager::getActiveEmailAddress());
     
     for (const string recipient : emailRecipients) {
@@ -108,15 +107,13 @@ int EmailManager::stageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
 
     if (!fileIsStaged(filePath)) {
-        vector<string> tokens;
-        boost::algorithm::split(tokens, filePath, boost::algorithm::is_any_of("/"));
-        string fileName = tokens[tokens.size() - 1];
-        
+        string fileName = getFileName(filePath);
         string absoluteFilePath = getAbsoluteFilePath(filePath);
         
         list<string> fileContents;
         Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
-        fileContents.push_back(fileName + " " + absoluteFilePath);
+        string fileLine = fileName + " " + absoluteFilePath;
+        fileContents.push_back(fileLine);
         
         return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
     }
@@ -125,8 +122,9 @@ int EmailManager::stageFile(string filePath) {
 
 int EmailManager::unstageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
+    string absoluteFilePath = getAbsoluteFilePath(filePath);
     
-    string fileLine = getFileName(filePath) + " " + getAbsoluteFilePath(filePath);
+    string fileLine = getFileName(filePath) + " " + absoluteFilePath;
     
     list<string> fileContents;
     Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
@@ -157,7 +155,8 @@ int EmailManager::popAllStagedFiles(unordered_map<string, string>& fileContents)
 }
 
 int EmailManager::removeAllStagedFiles() {
-    fopen(STAGE_FILE_PATH, "w");
+    list<string> empty;
+    Utilities::rebuildFile(STAGE_FILE_PATH, empty);
     if (fileStagerIsInitialized()) {
         return 0;
     }
@@ -175,22 +174,23 @@ string EmailManager::getFileName(string filePath) {
 }
 
 bool EmailManager::fileIsStaged(string filePath) {
-    string fileName = getFileName(filePath);
+    boost::filesystem::path inputPath(filePath);
     list<string> fileContents;
     Utilities::getFileContents(STAGE_FILE_PATH, fileContents);
-    
+
     for (string fileLine : fileContents) {
         vector<string> tokens;
         boost::algorithm::split(tokens, fileLine, boost::algorithm::is_any_of(" "));
-        if (tokens[0] == fileName) {
+        boost::filesystem::path stagedFilePath(tokens[1]);
+        if (boost::filesystem::equivalent(inputPath, stagedFilePath)) {
             return true;
         }
     }
-    return false;    
+    return false;
 }
 
 string EmailManager::getAbsoluteFilePath(string localPath) {
-    return (string) getcwd(NULL, 0) + "/" + localPath;
+    return boost::filesystem::canonical(localPath, boost::filesystem::current_path()).template string<string>();
 }
 
 void EmailManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent) {

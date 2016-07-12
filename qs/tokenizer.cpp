@@ -14,32 +14,33 @@ list<Token *> Tokenizer::tokenize(int rawc, const char * raw[]) {
     int index = 1;
     while (index < rawc) {
         string currentString = raw[index];
-        std::transform(currentString.begin(), currentString.end(), currentString.begin(), ::tolower);
+        string loweredCurrentString = currentString;
+        std::transform(loweredCurrentString.begin(), loweredCurrentString.end(), loweredCurrentString.begin(), ::tolower);
         Token::Type type;
         
-        if (currentString == "init") {
+        if (loweredCurrentString == "init") {
             type = Token::INIT;
-        } else if (currentString == "new") {
+        } else if (loweredCurrentString == "new") {
             type = Token::NEW;
-        } else if (currentString == "add") {
+        } else if (loweredCurrentString == "add") {
             type = Token::ADD;
-        } else if (currentString == "clear") {
+        } else if (loweredCurrentString == "clear") {
             type = Token::CLEAR;
-        } else if (currentString == "log") {
+        } else if (loweredCurrentString == "log") {
             type = Token::LOG;
-        } else if (currentString == "status") {
+        } else if (loweredCurrentString == "status") {
             type = Token::STATUS;
-        } else if (currentString == "switch") {
+        } else if (loweredCurrentString == "switch") {
             type = Token::SWITCH;
-        } else if (currentString == "rm") {
+        } else if (loweredCurrentString == "rm") {
             type = Token::REMOVE;
-        } else if (currentString == "-msg") {
+        } else if (loweredCurrentString == "-msg") {
             type = Token::MSG;
-        } else if (currentString == "-file") {
+        } else if (loweredCurrentString == "-file") {
             type = Token::FILE;
-        } else if (currentString == "-full") {
+        } else if (loweredCurrentString == "-full") {
             type = Token::FULL;
-        } else if (currentString == "-a") {
+        } else if (loweredCurrentString == "-a") {
             type = Token::ACCOUNT;
         } else {
             type = Token::CUSTOM;

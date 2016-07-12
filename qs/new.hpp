@@ -11,11 +11,18 @@
 
 #include <stdio.h>
 
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/classification.hpp>
+
 #include "action.hpp"
 
 class New : public Action {
 public:
     void execute() override;
+private:
+    void interactiveNewMsg();
+    void interactiveNewFile();
+    void interactiveNewFull();
 };
 
 #endif /* new_hpp */

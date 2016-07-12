@@ -27,6 +27,7 @@ using std::vector;
 namespace Utilities {
     void getFileContents(string filePath, list<string>& fileContents);
     int rebuildFile(const char * filePath, list<string>& fileContents);
+    string toLowerCase(string str);
 }
 
 #endif /* utilities_hpp */
