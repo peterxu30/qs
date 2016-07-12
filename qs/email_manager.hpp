@@ -38,6 +38,7 @@
 
 #include "accounts_manager.hpp"
 #include "error_checking_macros.h"
+#include "log_manager.hpp"
 #include "utilities.hpp"
 
 using std::cerr;
@@ -66,6 +67,7 @@ public:
     static bool fileIsStaged(string filePath);
     static string getAbsoluteFilePath(string localPath);
     static bool fileStagerIsInitialized();
+    static bool logIsInitialized();
     
 private:
     static char * STAGE_FILE_PATH;

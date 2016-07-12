@@ -41,12 +41,8 @@ void QSManager::initializeQuickSend() {
     
     if(dataDirectoryInitialized()) {
         cout << "quicksend initialized." << endl;
-//        
-//        if (!qsInitialized) {
-//            UserInterface::interactiveAddEmailAccount();
-//        }
     } else {
-        cout << "Initialization failed: Unable to create quicksend directory during initialization." << endl;
+        cout << "fatal: Unable to create quicksend directory during initialization." << endl;
     }
 }
 

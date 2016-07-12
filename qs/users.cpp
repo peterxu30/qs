@@ -10,7 +10,6 @@
 
 void Users::execute() {
     std::list<std::string> emails = AccountsManager::getAllEmailsAsStrings();
-    std::string activeEmail = AccountsManager::getActiveEmailAddress();
     
     for (std::string email : emails) {
         std::cout << email << "\n";

@@ -22,6 +22,7 @@
 
 #include "accounts_manager.hpp"
 #include "email_manager.hpp"
+#include "log_manager.hpp"
 #include "interpreter.hpp"
 #include "qs_manager.hpp"
 #include "tokenizer.hpp"

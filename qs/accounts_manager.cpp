@@ -24,7 +24,7 @@ bool AccountsManager::accountsManagerIsInitialized() {
 }
 
 void AccountsManager::addEmailAccount(string email, string password, string smtpAddress, bool active) {
-    ASSERT(isValidEmailAddress(email), "Add failed: Email address is not of proper format.");
+    ASSERT(isValidEmailAddress(email), "Fatal: Email address is not of proper format.");
     ASSERT(verifyEmailIsValid(email, password, smtpAddress), "Add failed: Failed to verify a valid email account with given information.");
     
     string encodedPassword = base64_encode(reinterpret_cast<const unsigned char*>(password.c_str()), 20);
@@ -99,7 +99,7 @@ AccountsManager::Account AccountsManager::getActiveEmailAccount() {
     }
     
     AccountsManager::Account activeAccount;
-    ASSERT((activeAccountExists || activeExists), "Failure: No active account selected.");
+    ASSERT((activeAccountExists || activeExists), "fatal: No active account selected.");
     
     activeAccount.email = activeEmailAddress;
     activeAccount.password = base64_decode(activeEmailEncodedPassword);
@@ -166,7 +166,7 @@ void AccountsManager::switchActiveEmailAccount(string email) {
 }
 
 bool AccountsManager::isSupportedEmailDomain(string email) {
-    ASSERT(isValidEmailAddress(email), "Add failed: Email address is not of proper format.");
+    ASSERT(isValidEmailAddress(email), "fatal: Email address is not of proper format.");
     vector<string> tokens;
     boost::algorithm::split(tokens, email, boost::algorithm::is_any_of("@"));
     string domain = tokens[1];
@@ -183,6 +183,7 @@ string AccountsManager::getSupportedDomainSMTP(string email) {
     return supportedEmailDomains.at(tokens[1]);
 }
 
+//needs work
 bool AccountsManager::verifyEmailIsValid(string email, string password, string smptpAddress) {
     return true;
 }
@@ -196,6 +197,7 @@ bool AccountsManager::isValidEmailAddress(string email) {
     return false;
 }
 
+//unneccessary?
 void AccountsManager::changeActiveEmailAccountVariables(string email, string encodedPassword, string emailSMTP) {
     AccountsManager::activeEmailAddress = email;
     AccountsManager::activeEmailEncodedPassword = encodedPassword;
@@ -204,19 +206,5 @@ void AccountsManager::changeActiveEmailAccountVariables(string email, string enc
 }
 
 void AccountsManager::rebuildAccountsFile(list<string>& fileContents) {
-    
     Utilities::rebuildFile("qs_data/accountFile.txt", fileContents);
-    
-//    FILE* accountsFile;
-//    accountsFile = fopen("qs_data/accountFile.txt", "w");
-//    
-//    std::fstream accountsFileStream("qs_data/accountFile.txt");
-//    if (accountsFileStream.is_open()) {
-//        list<string>::iterator iter = fileContents.begin();
-//        list<string>::iterator end = fileContents.end();
-//        while (iter != end) {
-//            accountsFileStream << *iter << '\n';
-//            ++iter;
-//        }
-//    }
 }

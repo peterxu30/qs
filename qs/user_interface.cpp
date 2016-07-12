@@ -27,11 +27,11 @@ int UserInterface::main(int argc, const char * argv[]) {
                 } else if (emailType == "full") {
                     
                 } else {
-                    cout << "Command failed: " << emailType <<
+                    cout << "fatal: " << emailType <<
                     " is not an accepted message type." << endl;
                 }
             } else {
-                cout << "Command failed: " << "Unacceptable amount of arguments." << endl;
+                cout << "fatal: " << "Unacceptable amount of arguments." << endl;
             }
         } else if (command == "add") {
             interactiveAddEmailAccount();
@@ -44,7 +44,7 @@ int UserInterface::main(int argc, const char * argv[]) {
         } else if (command == "rm") {
             interactiveDeleteEmailAccount(argc, argv);
         } else {
-            cout << "Command failed: " << command << " is not a qs command." << endl;
+            cout << "fatal: " << command << " is not a qs command." << endl;
         }
     } else {
         cout << "No command entered." << endl;
@@ -53,8 +53,8 @@ int UserInterface::main(int argc, const char * argv[]) {
 }
 
 void UserInterface::interactiveAddEmailAccount() {
-    ASSERT(QSManager::dataDirectoryInitialized(), "Add Failed: QuickSend is not initialized.");
-    ASSERT(AccountsManager::accountsManagerIsInitialized(), "Add failed: accountsFile does not exist.");
+    ASSERT(QSManager::dataDirectoryInitialized(), "fatal: QuickSend is not initialized.");
+    ASSERT(AccountsManager::accountsManagerIsInitialized(), "fatal: accountsFile does not exist.");
     
     string email;
     string password;
@@ -119,30 +119,8 @@ void UserInterface::interactiveDeleteEmailAccount(int argc, const char* argv[]) 
     }
 }
 
-void UserInterface::interactiveNewEmail(int argc, const char * argv[]) {
-    if (argc == 3) {
-        if (argv[2] == "msg") { //just msg
-            
-        } else if (argv[2] == "file") { //just attachment
-            
-        } else if (argv[2] == "full") { //msg + attachment
-            
-        }
-    }
-}
-
-void UserInterface::displayAllEmailAddresses() {
-    list<string> emailsAsStrings = AccountsManager::getAllEmailsAsStrings();
-    
-    cout << "Email Address  |  SMTP Address\n";
-    for (string emailAddress : emailsAsStrings) {
-        cout << emailAddress << '\n';
-    }
-    cout << endl;
-}
-
 void UserInterface::displayAllEmailMessages() {
-    list<string> emailMessages = EmailManager::getAllSentMessages();
+    list<string> emailMessages = LogManager::getAllSentMessages();
     
     cout << "Message Log\n";
     for (string emailMessage : emailMessages) {
@@ -151,10 +129,8 @@ void UserInterface::displayAllEmailMessages() {
     cout << endl;
 }
 
-//void UserInterface::createNewEmail
-
 int main(int argc, const char * argv[]) {
-    string cwd = getcwd(NULL, 0); //current working directory
+//    string cwd = getcwd(NULL, 0); //current working directory
 //    cout << cwd << endl;
 //
 //    vector<string> to = {"peterxu30@berkeley.edu"};

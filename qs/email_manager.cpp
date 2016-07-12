@@ -12,7 +12,7 @@
 #include "email_manager.hpp"
 
 char * EmailManager::STAGE_FILE_PATH = "qs_data/stage.txt";
-char * EmailManager::LOG_FILE_PATH = "qs_data/log.txt";
+//char * EmailManager::LOG_FILE_PATH = "qs_data/log.txt";
 
 MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent)
 {
@@ -45,8 +45,6 @@ MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string e
         string fileAttachmentPath = i->second;
         
         std::stringstream absoluteFileAttachmentPathStream;
-//        absoluteFileAttachmentPathStream << currentWorkingDirectory << "/" << relativeFileAttachmentPath;
-//        string absoluteFileAttachmentPath = absoluteFileAttachmentPathStream.str();
         
         newEmail->addAttachment(fileAttachmentName, new FilePartSource(fileAttachmentPath));
     }
@@ -97,11 +95,11 @@ int EmailManager::sendEmail(MailMessage * email)
     return 0;
 }
 
-list<string> EmailManager::getAllSentMessages() {
-    list<string> fileContents;
-    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
-    return fileContents;
-}
+//list<string> EmailManager::getAllSentMessages() {
+//    list<string> fileContents;
+//    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
+//    return fileContents;
+//}
 
 int EmailManager::stageFile(string filePath) {
     ASSERT(fileStagerIsInitialized(), "Staging failed: File stager not found.");
@@ -143,7 +141,7 @@ void EmailManager::getAllStagedFiles(unordered_map<string, string>& fileContents
         string fileLine = *iter;
         vector<string> tokens;
         boost::algorithm::split(tokens, fileLine, boost::algorithm::is_any_of(" "));
-        ASSERT(tokens.size() == 2, "Staging File Error: Something dun goofed.");
+        ASSERT(tokens.size() == 2, "fatal: staging file failed.");
         fileContents[tokens[0]] = tokens[1];
         iter++;
     }
@@ -166,6 +164,10 @@ int EmailManager::removeAllStagedFiles() {
 bool EmailManager::fileStagerIsInitialized() {
     return boost::filesystem::exists(STAGE_FILE_PATH);
 }
+
+//bool EmailManager::logIsInitialized() {
+//    return boost::filesystem::exists(LOG_FILE_PATH);
+//}
 
 string EmailManager::getFileName(string filePath) {
     vector<string> tokens;
@@ -193,48 +195,48 @@ string EmailManager::getAbsoluteFilePath(string localPath) {
     return boost::filesystem::canonical(localPath, boost::filesystem::current_path()).template string<string>();
 }
 
-void EmailManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent) {
-    logEmail(sender, emailRecipients, emailSubject, emailContent, unordered_map<string, string>());
-}
-
-void EmailManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap) {
-    boost::uuids::uuid logID = (boost::uuids::random_generator()());
-    list<string> fileContents;
-    const char * logFilePath = (boost::lexical_cast<string>(logID) + ".txt").c_str();
-    addEmailToLog(logFilePath);
-
-    string senderLine = "Sender: " + sender + "\n";
-    fileContents.push_back(senderLine);
-    
-    string recipientsLine = "Recipients:";
-    vector<string>::iterator iter = emailRecipients.begin();
-    vector<string>::iterator end = emailRecipients.end();
-    while (iter != end) {
-        recipientsLine += " " + *iter;
-        iter++;
-    }
-    recipientsLine += "\n";
-    fileContents.push_back(recipientsLine);
-    
-    string subjectLine = "Subject: " + emailSubject + "\n";
-    fileContents.push_back(subjectLine);
-    
-    string contentLine = "Content: " + emailContent + "\n";
-    fileContents.push_back(contentLine);
-    
-    string attachmentsLine = "Attachments:";
-    for (auto kv : fileAttachmentMap) {
-        attachmentsLine += " " + kv.second;
-    }
-    attachmentsLine += "\n";
-    fileContents.push_back(attachmentsLine);
-    
-    Utilities::rebuildFile(logFilePath, fileContents);
-}
-
-void EmailManager::addEmailToLog(string fileName) { //maybe add more details later
-    list<string> fileContents;
-    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
-    fileContents.push_front(fileName);
-    Utilities::rebuildFile(LOG_FILE_PATH, fileContents);
-}
+//void EmailManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent) {
+//    logEmail(sender, emailRecipients, emailSubject, emailContent, unordered_map<string, string>());
+//}
+//
+//void EmailManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap) {
+//    boost::uuids::uuid logID = (boost::uuids::random_generator()());
+//    list<string> fileContents;
+//    const char * logFilePath = (boost::lexical_cast<string>(logID) + ".txt").c_str();
+//    addEmailToLog(logFilePath);
+//
+//    string senderLine = "Sender: " + sender + "\n";
+//    fileContents.push_back(senderLine);
+//    
+//    string recipientsLine = "Recipients:";
+//    vector<string>::iterator iter = emailRecipients.begin();
+//    vector<string>::iterator end = emailRecipients.end();
+//    while (iter != end) {
+//        recipientsLine += " " + *iter;
+//        iter++;
+//    }
+//    recipientsLine += "\n";
+//    fileContents.push_back(recipientsLine);
+//    
+//    string subjectLine = "Subject: " + emailSubject + "\n";
+//    fileContents.push_back(subjectLine);
+//    
+//    string contentLine = "Content: " + emailContent + "\n";
+//    fileContents.push_back(contentLine);
+//    
+//    string attachmentsLine = "Attachments:";
+//    for (auto kv : fileAttachmentMap) {
+//        attachmentsLine += " " + kv.second;
+//    }
+//    attachmentsLine += "\n";
+//    fileContents.push_back(attachmentsLine);
+//    
+//    Utilities::rebuildFile(logFilePath, fileContents);
+//}
+//
+//void EmailManager::addEmailToLog(string fileName) { //maybe add more details later
+//    list<string> fileContents;
+//    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
+//    fileContents.push_front(fileName);
+//    Utilities::rebuildFile(LOG_FILE_PATH, fileContents);
+//}

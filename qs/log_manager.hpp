@@ -10,12 +10,35 @@
 #define log_manager_hpp
 
 #include <stdio.h>
+#include <string>
+#include <vector>
+#include <unordered_map>
 
 #include <boost/filesystem.hpp>
+#include <boost/filesystem/operations.hpp>
+#include <boost/filesystem/path.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+
+#include "utilities.hpp"
+
+using std::string;
+using std::vector;
 
 class LogManager {
 public:
     static bool logIsInitialized();
+    static list<string> getAllSentMessages();
+    
+private:
+    static char * LOG_FILE_PATH;
+    static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent);
+    static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
+    static void addEmailToLog(string fileName);
+
 };
 
 #endif /* log_manager_hpp */
