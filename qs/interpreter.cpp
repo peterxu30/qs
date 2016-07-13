@@ -57,7 +57,6 @@ void Interpreter::eval(list<Token *> tokens) {
     while (!tokens.empty()) {
         token = tokens.front();
         tokens.pop_front();
-        
         if (token->isFlag()) {
             action->addFlag(token->type);
         } else {

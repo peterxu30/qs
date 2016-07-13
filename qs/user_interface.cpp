@@ -54,7 +54,7 @@ int UserInterface::main(int argc, const char * argv[]) {
 
 void UserInterface::interactiveAddEmailAccount() {
     ASSERT(QSManager::dataDirectoryInitialized(), "fatal: QuickSend is not initialized.");
-    ASSERT(AccountsManager::accountsManagerIsInitialized(), "fatal: accountsFile does not exist.");
+    ASSERT(AccountsManager::accountsManagerIsInitialized(), "fatal: accounts manager not initialized.");
     
     string email;
     string password;
@@ -130,6 +130,9 @@ void UserInterface::displayAllEmailMessages() {
 }
 
 int main(int argc, const char * argv[]) {
+    list<Token *> tokens = Tokenizer::tokenize(argc, argv);
+    Interpreter::eval(tokens);
+    
 //    string cwd = getcwd(NULL, 0); //current working directory
 //    cout << cwd << endl;
 //
@@ -144,7 +147,5 @@ int main(int argc, const char * argv[]) {
 ////    EmailNetworkingManager::sendEmail(email);
 //    
 //    delete email;
-    list<Token *> tokens = Tokenizer::tokenize(argc, argv);
-    Interpreter::eval(tokens);
 //    return UserInterface::main(argc, argv);
 }

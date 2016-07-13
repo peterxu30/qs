@@ -24,8 +24,8 @@ bool AccountsManager::accountsManagerIsInitialized() {
 }
 
 void AccountsManager::addEmailAccount(string email, string password, string smtpAddress, bool active) {
-    ASSERT(isValidEmailAddress(email), "Fatal: Email address is not of proper format.");
-    ASSERT(verifyEmailIsValid(email, password, smtpAddress), "Add failed: Failed to verify a valid email account with given information.");
+    ASSERT(isValidEmailAddress(email), "fatal: Email address is not of proper format.");
+    ASSERT(verifyEmailIsValid(email, password, smtpAddress), "fatal: Failed to verify a valid email account with given information.");
     
     string encodedPassword = base64_encode(reinterpret_cast<const unsigned char*>(password.c_str()), 20);
     
@@ -88,7 +88,7 @@ AccountsManager::Account AccountsManager::getActiveEmailAccount() {
             vector<string> tokens;
             boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
             
-            if (tokens.size() == 4) {
+            if (tokens.back() == "*") {
                 activeEmailAddress = tokens[0];
                 activeEmailEncodedPassword = tokens[1];
                 activeEmailSMTP = tokens[2];
@@ -99,7 +99,7 @@ AccountsManager::Account AccountsManager::getActiveEmailAccount() {
     }
     
     AccountsManager::Account activeAccount;
-    ASSERT((activeAccountExists || activeExists), "fatal: No active account selected.");
+    ASSERT((activeAccountExists || activeExists), "fatal: no active account selected.");
     
     activeAccount.email = activeEmailAddress;
     activeAccount.password = base64_decode(activeEmailEncodedPassword);
@@ -118,11 +118,7 @@ list<string> AccountsManager::getAllEmailsAsStrings() {
         boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
         
         string accountWithoutPassword;
-        if (tokens.size() == 4) {
-            accountWithoutPassword = "* " + tokens[0];
-        } else {
-            accountWithoutPassword = tokens[0];
-        }
+        accountWithoutPassword = tokens[0];
         
         emailsAsStrings.push_back(accountWithoutPassword);
     }
@@ -160,13 +156,13 @@ void AccountsManager::switchActiveEmailAccount(string email) {
         }
     }
     if (!exists) {
-        cout << "Switch failed: Account does not exist." << endl;
+        cout << "fatal: account does not exist." << endl;
     }
     rebuildAccountsFile(fileContents);
 }
 
 bool AccountsManager::isSupportedEmailDomain(string email) {
-    ASSERT(isValidEmailAddress(email), "fatal: Email address is not of proper format.");
+    ASSERT(isValidEmailAddress(email), "fatal: email address is not of proper format.");
     vector<string> tokens;
     boost::algorithm::split(tokens, email, boost::algorithm::is_any_of("@"));
     string domain = tokens[1];
@@ -177,7 +173,7 @@ bool AccountsManager::isSupportedEmailDomain(string email) {
 }
 
 string AccountsManager::getSupportedDomainSMTP(string email) {
-    ASSERT(isSupportedEmailDomain(email), "Illegal call: Domain is not supported for automatic SMTP retrieval.");
+    ASSERT(isSupportedEmailDomain(email), "fatal: Domain is not supported for automatic SMTP retrieval.");
     vector<string> tokens;
     boost::algorithm::split(tokens, email, boost::algorithm::is_any_of("@"));
     return supportedEmailDomains.at(tokens[1]);
@@ -206,5 +202,5 @@ void AccountsManager::changeActiveEmailAccountVariables(string email, string enc
 }
 
 void AccountsManager::rebuildAccountsFile(list<string>& fileContents) {
-    Utilities::rebuildFile("qs_data/accountFile.txt", fileContents);
+    Utilities::rebuildFile(ACCOUNT_FILE_PATH, fileContents);
 }

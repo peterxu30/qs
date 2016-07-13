@@ -58,7 +58,6 @@ public:
     static MailMessage * createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
     static MailMessage * createEmailFromStaging(vector<string> emailRecipients, string emailSubject, string emailContent);
     static int sendEmail(MailMessage * email);
-    static list<string> getAllSentMessages();
     static int stageFile(string filePath);
     static int unstageFile(string filePath);
     static void getAllStagedFiles(unordered_map<string, string>& fileContents);
@@ -67,14 +66,9 @@ public:
     static bool fileIsStaged(string filePath);
     static string getAbsoluteFilePath(string localPath);
     static bool fileStagerIsInitialized();
-    static bool logIsInitialized();
     
 private:
     static char * STAGE_FILE_PATH;
-    static char * LOG_FILE_PATH;
-    static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent);
-    static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
-    static void addEmailToLog(string fileName);
     static string getFileName(string filePath);
     
 };

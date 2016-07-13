@@ -42,7 +42,7 @@ public:
     bool isFlag();
 
 private:
-    const int numberOfCommands = 8;
+    const int numberOfCommands = 9;
     const int numberOfFlags = 4;
 };
 
