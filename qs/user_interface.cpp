@@ -109,7 +109,7 @@ void UserInterface::interactiveAddEmailAccount() {
 
 void UserInterface::interactiveDeleteEmailAccount(int argc, const char* argv[]) {
     if (argc == 3) {
-        if (AccountsManager::deleteEmailAccount(argv[2])) {
+        if (AccountsManager::removeEmailAccount(argv[2])) {
             cout << "Email deleted." << endl;
         } else {
             cout << "Delete failed: Email not found." << endl;
@@ -130,8 +130,12 @@ void UserInterface::displayAllEmailMessages() {
 }
 
 int main(int argc, const char * argv[]) {
-    list<Token *> tokens = Tokenizer::tokenize(argc, argv);
-    Interpreter::eval(tokens);
+    try {
+        list<Token *> tokens = Tokenizer::tokenize(argc, argv);
+        Interpreter::eval(tokens);
+    } catch (std::exception& e) {
+        std::cerr << "fatal: " << e.what() << std::endl;
+    }
     
 //    string cwd = getcwd(NULL, 0); //current working directory
 //    cout << cwd << endl;

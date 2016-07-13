@@ -45,8 +45,8 @@ public:
     
     static bool accountsManagerIsInitialized();
     static void addEmailAccount(string email, string password, string smtpAddress, bool active);
-    static bool deleteEmailAccount(string email);
-    static void deleteAllEmailAccounts();
+    static bool removeEmailAccount(string email);
+    static void removeAllEmailAccounts();
     static AccountsManager::Account getActiveEmailAccount();
     static string getActiveEmailAddress();
     static list<string> getAllEmailsAsStrings();

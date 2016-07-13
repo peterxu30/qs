@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <list>
+#include <stdexcept>
 #include <string>
 
 #include "error_checking_macros.h"
@@ -29,6 +30,10 @@ public:
 protected:
     list<Token::Type> flags;
     list<string> args;
+    Token::Type frontFlag();
+    void popFrontFlag();
+    string frontArg();
+    void popFrontArg();
 };
 
 #endif /* action_hpp */

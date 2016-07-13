@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 
+#include "accounts_manager.hpp"
 #include "action.hpp"
 #include "email_manager.hpp"
 

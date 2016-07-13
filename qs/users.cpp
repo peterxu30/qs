@@ -9,6 +9,14 @@
 #include "users.hpp"
 
 void Users::execute() {
+    if (this->flags.size() > 0) {
+        throw std::length_error("log can have zero flags");
+    }
+    
+    if (this->args.size() > 0) {
+        throw std::length_error("log can have zero arguments");
+    }
+    
     std::list<std::string> emails = AccountsManager::getAllEmailsAsStrings();
     std::string activeEmailAccount = AccountsManager::getActiveEmailAddress();
     std::cout << "\n";

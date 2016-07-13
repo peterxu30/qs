@@ -9,6 +9,8 @@
 #include "init.hpp"
 
 void Init::execute() {
-    ASSERT(this->flags.size() == 0, "fatal: new can have zero flags");
+    if (this->flags.size() > 0) {
+        throw std::length_error("new can have zero flags");
+    }
     QSManager::initializeQuickSend();
 }

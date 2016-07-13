@@ -9,7 +9,9 @@
 #include "new.hpp"
 
 void New::execute() {
-    ASSERT(this->flags.size() <= 1, "fatal: new can have zero or one flags");
+    if (this->flags.size() > 1) {
+        throw std::length_error("new can have zero or one flags");
+    }
     
     string recipients;
     string title;
@@ -45,8 +47,7 @@ void New::execute() {
             std::cin >> attachments;
             break;
         default:
-            std::cout << "fatal: unrecognized argument: " << flag << std::endl;
-            std::terminate();
+            throw std::invalid_argument("unrecognized argument");
             break;
     }
     list<string> recipientList;

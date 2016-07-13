@@ -9,6 +9,13 @@
 #include "log.hpp"
 
 void Log::execute() {
-    ASSERT(this->flags.size() == 0, "fatal: log can have zero flags");
+    if (this->flags.size() > 0) {
+        throw std::length_error("log can have zero flags");
+    }
+    
+    if (this->args.size() > 0) {
+        throw std::length_error("log can have zero arguments");
+    }
+    
     UserInterface::displayAllEmailMessages();
 }

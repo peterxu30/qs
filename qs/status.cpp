@@ -9,6 +9,14 @@
 #include "status.hpp"
 
 void Status::execute() {
+    if (this->flags.size() > 0) {
+        throw std::length_error("log can have zero flags");
+    }
+    
+    if (this->args.size() > 0) {
+        throw std::length_error("log can have zero arguments");
+    }
+    
     unordered_map<string, string> stagedFiles;
     EmailManager::getAllStagedFiles(stagedFiles);
     std::cout << stagedFiles.size() << " files staged";

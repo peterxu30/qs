@@ -14,8 +14,8 @@
 #include <string>
 #include <unordered_map>
 
-#include "action.hpp"
 #include "accounts_manager.hpp"
+#include "action.hpp"
 
 class Users : public Action {
 public:

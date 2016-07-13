@@ -56,11 +56,12 @@ void AccountsManager::addEmailAccount(string email, string password, string smtp
     rebuildAccountsFile(updatedFileContents);
 }
 
-bool AccountsManager::deleteEmailAccount(string email) {
+//fix return type
+bool AccountsManager::removeEmailAccount(string email) {
     list<string> fileContents;
     Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
     list<string> updatedFileContents;
-    bool deleted = false;
+    bool removed = false;
     for (string accountLine : fileContents) {
         vector<string> tokens;
         boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
@@ -69,14 +70,14 @@ bool AccountsManager::deleteEmailAccount(string email) {
             if (tokens.size() == 4) {
                 AccountsManager::activeAccountExists = false;
             }
-            deleted = true;
+            removed = true;
         } else {
             updatedFileContents.push_back(accountLine);
         }
     }
     
     rebuildAccountsFile(updatedFileContents);
-    return deleted;
+    return removed;
 }
 
 AccountsManager::Account AccountsManager::getActiveEmailAccount() {
