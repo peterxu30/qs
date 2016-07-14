@@ -14,7 +14,7 @@
 char * EmailManager::STAGE_FILE_PATH = "qs_data/stage.txt";
 //char * EmailManager::LOG_FILE_PATH = "qs_data/log.txt";
 
-MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent)
+MailMessage * EmailManager::createEmail(list<string> emailRecipients, string emailSubject, string emailContent)
 {
     MailMessage * newEmail = new MailMessage();
     
@@ -33,7 +33,7 @@ MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string e
     return newEmail;
 }
 
-MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap)
+MailMessage * EmailManager::createEmail(list<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap)
 {
     MailMessage * newEmail = createEmail(emailRecipients, emailSubject, emailContent);
     
@@ -51,7 +51,7 @@ MailMessage * EmailManager::createEmail(vector<string> emailRecipients, string e
     return newEmail;
 }
 
-MailMessage * EmailManager::createEmailFromStaging(vector<string> emailRecipients, string emailSubject, string emailContent) {
+MailMessage * EmailManager::createEmailFromStaging(list<string> emailRecipients, string emailSubject, string emailContent) {
     unordered_map<string, string> fileAttachmentMap;
     popAllStagedFiles(fileAttachmentMap);
     return createEmail(emailRecipients, emailSubject, emailContent, fileAttachmentMap);
@@ -107,6 +107,13 @@ int EmailManager::stageFile(string filePath) {
         fileContents.push_back(fileLine);
         
         return Utilities::rebuildFile(STAGE_FILE_PATH, fileContents);
+    }
+    return 0;
+}
+
+int EmailManager::stageFiles(list<string> filePaths) {
+    for (string filePath : filePaths) {
+        stageFile(filePath);
     }
     return 0;
 }

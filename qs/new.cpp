@@ -14,7 +14,7 @@ void New::execute() {
     }
     
     string recipients;
-    string title;
+    string subject;
     string body = "";
     string attachments = "";
     
@@ -22,7 +22,7 @@ void New::execute() {
     std::cin >> recipients;
     
     std::cout << "Title: ";
-    std::cin >> title;
+    std::cin >> subject;
     
     Token::Type flag;
     if (!this->flags.empty()) {
@@ -47,7 +47,7 @@ void New::execute() {
             std::cin >> attachments;
             break;
         default:
-            throw std::invalid_argument("unrecognized argument");
+            throw std::invalid_argument("unrecognized flag");
             break;
     }
     list<string> recipientList;
@@ -55,7 +55,14 @@ void New::execute() {
     
     list<string> attachmentList;
     boost::algorithm::split(attachmentList, attachments, boost::algorithm::is_any_of(" "));
-
+    
+    EmailManager::stageFiles(attachmentList);
+    MailMessage * email = EmailManager::createEmailFromStaging(recipientList, subject, body);
+    try {
+        EmailManager::sendEmail(email);
+    } catch (std::exception& e) {
+        throw std::runtime_error("email failed to send");
+    }
 }
 
 void New::interactiveNewMsg() {

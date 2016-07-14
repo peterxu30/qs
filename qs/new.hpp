@@ -14,7 +14,10 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 
+#include <Poco/Net/MailMessage.h>
+
 #include "action.hpp"
+#include "email_manager.hpp"
 
 class New : public Action {
 public:

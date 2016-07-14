@@ -9,5 +9,13 @@
 #include "clear.hpp"
 
 void Clear::execute() {
+    if (!this->flags.empty()) {
+        throw std::length_error("log can have zero flags");
+    }
+    
+    if (!this->args.empty()) {
+        throw std::length_error("log can have zero arguments");
+    }
+    
     EmailManager::removeAllStagedFiles();
 }

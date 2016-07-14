@@ -9,7 +9,7 @@
 #include "init.hpp"
 
 void Init::execute() {
-    if (this->flags.size() > 0) {
+    if (!this->flags.empty()) {
         throw std::length_error("new can have zero flags");
     }
     QSManager::initializeQuickSend();

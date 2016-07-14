@@ -9,11 +9,11 @@
 #include "log.hpp"
 
 void Log::execute() {
-    if (this->flags.size() > 0) {
+    if (!this->flags.empty()) {
         throw std::length_error("log can have zero flags");
     }
     
-    if (this->args.size() > 0) {
+    if (!this->args.empty()) {
         throw std::length_error("log can have zero arguments");
     }
     

@@ -10,12 +10,17 @@
 
 //not done, need to add add new email functionality.
 void Switch::execute() {
+    if (this->flags.size() > 1) {
+        throw std::length_error("unacceptable number of flags");
+    }
+    
     if (this->args.size() > 1) {
         throw std::length_error("unacceptable number of addresses");
     }
     
-    if (this->flags.size() == 1) {
-        if (this->flags.front() == Token::ACCOUNT) {
+    if (this->flags.empty()) {
+        AccountsManager::switchActiveEmailAccount(this->frontArg());
+    } else if (this->flags.front() == Token::ACCOUNT) {
             string email;
             string password;
             string smtpAddress;
@@ -32,10 +37,7 @@ void Switch::execute() {
             
             AccountsManager::addEmailAccount(email, password, smtpAddress, true);
             std::cout << email << " added." << std::endl;
-        } else {
+    } else {
             throw std::invalid_argument("flag not acceptable");
-        }
-    } else if (this->flags.size() == 0) {
-        AccountsManager::switchActiveEmailAccount(this->frontArg());
     }
 }
