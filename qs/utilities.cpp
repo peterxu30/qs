@@ -13,6 +13,7 @@ void Utilities::getFileContents(string filePath, list<string>& fileContents) {
     string stageFileLine;
     if (fileStagerStream.is_open()) {
         while (getline(fileStagerStream, stageFileLine, '\n')) {
+//            std::cout << "\nstage file path: " << filePath << "\nstagefile line: " << stageFileLine;
             fileContents.push_back(stageFileLine);
         }
     }

@@ -10,6 +10,8 @@
 #define new_hpp
 
 #include <stdio.h>
+#include <ios>
+#include <unordered_map>
 
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
@@ -18,14 +20,14 @@
 
 #include "action.hpp"
 #include "email_manager.hpp"
+#include "log_manager.hpp"
 
 class New : public Action {
 public:
     void execute() override;
 private:
-    void interactiveNewMsg();
-    void interactiveNewFile();
-    void interactiveNewFull();
+    string promptMsg();
+    list<string> promptFile();
 };
 
 #endif /* new_hpp */

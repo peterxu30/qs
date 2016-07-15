@@ -9,9 +9,11 @@
 #include "log_manager.hpp"
 
 char * LogManager::LOG_FILE_PATH = "qs_data/log.txt";
+char * LogManager::LOG_DIR_PATH = "qs_data/log/";
 
 bool LogManager::logIsInitialized() {
-    return boost::filesystem::exists("qs_data/log.txt");
+    return boost::filesystem::exists(LOG_FILE_PATH)
+        && boost::filesystem::exists(LOG_DIR_PATH);
 }
 
 list<string> LogManager::getAllSentMessages() {
@@ -20,22 +22,23 @@ list<string> LogManager::getAllSentMessages() {
     return fileContents;
 }
 
-void LogManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent) {
+void LogManager::logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent) {
     logEmail(sender, emailRecipients, emailSubject, emailContent, std::unordered_map<string, string>());
 }
 
-void LogManager::logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap) {
+void LogManager::logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap) {
     boost::uuids::uuid logID = (boost::uuids::random_generator()());
     std::list<string> fileContents;
-    const char * logFilePath = (boost::lexical_cast<string>(logID) + ".txt").c_str();
-    addEmailToLog(logFilePath);
+    const char * logIDstr = boost::lexical_cast<string>(logID).c_str();
+    const char * logFilePath = (LOG_DIR_PATH + string(logIDstr) + ".txt").c_str();
+    addEmailToLog(logIDstr);
     
     string senderLine = "Sender: " + sender + "\n";
     fileContents.push_back(senderLine);
     
     string recipientsLine = "Recipients:";
-    vector<string>::iterator iter = emailRecipients.begin();
-    vector<string>::iterator end = emailRecipients.end();
+    list<string>::iterator iter = emailRecipients.begin();
+    list<string>::iterator end = emailRecipients.end();
     while (iter != end) {
         recipientsLine += " " + *iter;
         iter++;
@@ -57,6 +60,7 @@ void LogManager::logEmail(string sender, vector<string> emailRecipients, string 
     fileContents.push_back(attachmentsLine);
     
     Utilities::rebuildFile(logFilePath, fileContents);
+    cout << "logged.";
 }
 
 void LogManager::addEmailToLog(string fileName) { //maybe add more details later

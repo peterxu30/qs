@@ -54,10 +54,10 @@ class EmailManager
 {
     
 public:
-    static MailMessage * createEmail(list<string> emailRecipients, string emailSubject, string emailContent);
-    static MailMessage * createEmail(list<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
-    static MailMessage * createEmailFromStaging(list<string> emailRecipients, string emailSubject, string emailContent);
-    static int sendEmail(MailMessage * email);
+    static MailMessage * createEmail(list<string>& emailRecipients, string emailSubject, string emailContent);
+    static MailMessage * createEmail(list<string>& emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string>& fileAttachmentMap);
+    static MailMessage * createEmailFromStaging(list<string>& emailRecipients, string emailSubject, string emailContent);
+    static void sendEmail(MailMessage * email);
     static int stageFile(string filePath);
     static int stageFiles(list<string> filePaths);
     static int unstageFile(string filePath);

@@ -26,6 +26,9 @@ void QSManager::initializeQuickSend() {
     }
     
     if (!LogManager::logIsInitialized()) {
+        const char logDirectoryPath[] = "qs_data/log";
+        boost::filesystem::path logDir(logDirectoryPath); //fix ghetto
+        boost::filesystem::create_directory(logDir);
         fopen("qs_data/log.txt", "w");
         cout << "No log file detected: Log file created.\n";
     }
@@ -35,9 +38,6 @@ void QSManager::initializeQuickSend() {
         cout << "No staging file detected: File stager created.\n";
 
     }
-    
-    const char dir_path[] = "qs_data";
-    boost::filesystem::path dir(dir_path);
     
     if(dataDirectoryInitialized()) {
         cout << "quicksend initialized." << endl;

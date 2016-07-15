@@ -14,7 +14,7 @@
 char * EmailManager::STAGE_FILE_PATH = "qs_data/stage.txt";
 //char * EmailManager::LOG_FILE_PATH = "qs_data/log.txt";
 
-MailMessage * EmailManager::createEmail(list<string> emailRecipients, string emailSubject, string emailContent)
+MailMessage * EmailManager::createEmail(list<string>& emailRecipients, string emailSubject, string emailContent)
 {
     MailMessage * newEmail = new MailMessage();
     
@@ -33,31 +33,35 @@ MailMessage * EmailManager::createEmail(list<string> emailRecipients, string ema
     return newEmail;
 }
 
-MailMessage * EmailManager::createEmail(list<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap)
+MailMessage * EmailManager::createEmail(list<string>& emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string>& fileAttachmentMap)
 {
     MailMessage * newEmail = createEmail(emailRecipients, emailSubject, emailContent);
     
 //    string currentWorkingDirectory = getcwd(NULL, 0);
     
-    for (std::unordered_map<string, string>::iterator i = fileAttachmentMap.begin(); i != fileAttachmentMap.end(); i++) {
-        string fileAttachmentName = i->first;
-        string fileAttachmentPath = i->second;
-        
-        std::stringstream absoluteFileAttachmentPathStream;
-        
-        newEmail->addAttachment(fileAttachmentName, new FilePartSource(fileAttachmentPath));
+    cout << fileAttachmentMap.size() << endl;
+    
+    if (!fileAttachmentMap.empty()) {
+        for (auto kv : fileAttachmentMap) {
+            string fileAttachmentName = kv.first;
+            string fileAttachmentPath = kv.second;
+            
+            std::stringstream absoluteFileAttachmentPathStream;
+            
+            newEmail->addAttachment(fileAttachmentName, new FilePartSource(fileAttachmentPath));
+        }
     }
     
     return newEmail;
 }
 
-MailMessage * EmailManager::createEmailFromStaging(list<string> emailRecipients, string emailSubject, string emailContent) {
+MailMessage * EmailManager::createEmailFromStaging(list<string>& emailRecipients, string emailSubject, string emailContent) {
     unordered_map<string, string> fileAttachmentMap;
     popAllStagedFiles(fileAttachmentMap);
     return createEmail(emailRecipients, emailSubject, emailContent, fileAttachmentMap);
 }
 
-int EmailManager::sendEmail(MailMessage * email)
+void EmailManager::sendEmail(MailMessage * email)
 {
     AccountsManager::Account activeAccount = AccountsManager::getActiveEmailAccount();
     string host = activeAccount.smtpAddress;
@@ -82,21 +86,26 @@ int EmailManager::sendEmail(MailMessage * email)
             session.close();
             uninitializeSSL();
         } catch (SMTPException &e) {
-            cerr << e.displayText() << endl;
             session.close();
             uninitializeSSL();
-            return 0;
+            throw e;
         }
     } catch (NetException &e) {
-        cerr << e.displayText() << endl;
-        return 0;
+        throw e;
     }
-    return 0;
 }
 
 int EmailManager::stageFile(string filePath) {
-    ASSERT(fileStagerIsInitialized(), "fatal: File stager not found.");
+    ASSERT(fileStagerIsInitialized(), "fatal: file stager not found.");
 
+    if (filePath == "") {
+        return 0;
+    }
+    
+    if (!boost::filesystem::exists(filePath)) {
+        throw std::invalid_argument(filePath + " not found");
+    }
+    
     if (!fileIsStaged(filePath)) {
         string fileName = getFileName(filePath);
         string absoluteFilePath = getAbsoluteFilePath(filePath);
@@ -119,7 +128,7 @@ int EmailManager::stageFiles(list<string> filePaths) {
 }
 
 int EmailManager::unstageFile(string filePath) {
-    ASSERT(fileStagerIsInitialized(), "fatal: File stager not found.");
+    ASSERT(fileStagerIsInitialized(), "fatal: file stager not found.");
     string absoluteFilePath = getAbsoluteFilePath(filePath);
     
     string fileLine = getFileName(filePath) + " " + absoluteFilePath;
@@ -134,16 +143,11 @@ void EmailManager::getAllStagedFiles(unordered_map<string, string>& fileContents
     list<string> fileList;
     Utilities::getFileContents(STAGE_FILE_PATH, fileList);
     
-    list<string>::iterator iter = fileList.begin();
-    list<string>::iterator endIter = fileList.end();
-    
-    while (iter != endIter) {
-        string fileLine = *iter;
+    for (string fileLine : fileList) {
         vector<string> tokens;
         boost::algorithm::split(tokens, fileLine, boost::algorithm::is_any_of(" "));
         ASSERT(tokens.size() == 2, "fatal: staging file failed.");
         fileContents[tokens[0]] = tokens[1];
-        iter++;
     }
 }
 

@@ -31,12 +31,13 @@ using std::vector;
 class LogManager {
 public:
     static bool logIsInitialized();
+    static void logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent);
+    static void logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
     static list<string> getAllSentMessages();
     
 private:
     static char * LOG_FILE_PATH;
-    static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent);
-    static void logEmail(string sender, vector<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
+    static char * LOG_DIR_PATH;
     static void addEmailToLog(string fileName);
 
 };
