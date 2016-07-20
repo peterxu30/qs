@@ -27,7 +27,6 @@ public:
     void execute() override;
 private:
     string promptMsg();
-    list<string> promptFile();
 };
 
 #endif /* new_hpp */

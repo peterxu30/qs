@@ -37,8 +37,6 @@ MailMessage * EmailManager::createEmail(list<string>& emailRecipients, string em
 {
     MailMessage * newEmail = createEmail(emailRecipients, emailSubject, emailContent);
     
-//    string currentWorkingDirectory = getcwd(NULL, 0);
-    
     cout << fileAttachmentMap.size() << endl;
     
     if (!fileAttachmentMap.empty()) {
@@ -82,7 +80,6 @@ void EmailManager::sendEmail(MailMessage * email)
         try {
             session.login(SMTPClientSession::AUTH_LOGIN, user, password);
             session.sendMessage(*email);
-            cout << "Message successfully sent." << endl;
             session.close();
             uninitializeSSL();
         } catch (SMTPException &e) {

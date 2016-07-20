@@ -29,20 +29,21 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
 void LogManager::logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap) {
     boost::uuids::uuid logID = (boost::uuids::random_generator()());
     std::list<string> fileContents;
-    const char * logIDstr = boost::lexical_cast<string>(logID).c_str();
-    const char * logFilePath = (LOG_DIR_PATH + string(logIDstr) + ".txt").c_str();
-    addEmailToLog(logIDstr);
+    string logIDStr = boost::uuids::to_string(logID);
+    string logFilePathStr(LOG_DIR_PATH);
+    logFilePathStr.append(logIDStr);
+    logFilePathStr.append(".txt");
+    const char * logFilePath = logFilePathStr.c_str();
+    addEmailToLog(logIDStr);
     
     string senderLine = "Sender: " + sender + "\n";
     fileContents.push_back(senderLine);
     
     string recipientsLine = "Recipients:";
-    list<string>::iterator iter = emailRecipients.begin();
-    list<string>::iterator end = emailRecipients.end();
-    while (iter != end) {
-        recipientsLine += " " + *iter;
-        iter++;
+    for (string recipient : emailRecipients) {
+        recipientsLine += " " + recipient;
     }
+    
     recipientsLine += "\n";
     fileContents.push_back(recipientsLine);
     
@@ -56,11 +57,10 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
     for (auto kv : fileAttachmentMap) {
         attachmentsLine += " " + kv.second;
     }
+    
     attachmentsLine += "\n";
     fileContents.push_back(attachmentsLine);
-    
     Utilities::rebuildFile(logFilePath, fileContents);
-    cout << "logged.";
 }
 
 void LogManager::addEmailToLog(string fileName) { //maybe add more details later

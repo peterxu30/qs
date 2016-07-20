@@ -37,21 +37,17 @@ void New::execute() {
     list<string> attachmentList;
     
     MailMessage * email;
-    unordered_map<string, string> fileAttachmentMap;
+    unordered_map<string, string> fileAttachmentMap{};
 
     if (flag == Token::FULL) {
         body = promptMsg();
-        attachmentList = promptFile();
         EmailManager::getAllStagedFiles(fileAttachmentMap);
-        EmailManager::stageFiles(attachmentList);
         email = EmailManager::createEmailFromStaging(recipientList, subject, body);
     } else if (flag == Token::MSG) {
         body = promptMsg();
         email = EmailManager::createEmail(recipientList, subject, body);
     } else if (flag == Token::FILE) {
-        attachmentList = promptFile();
         EmailManager::getAllStagedFiles(fileAttachmentMap);
-        EmailManager::stageFiles(attachmentList);
         email = EmailManager::createEmailFromStaging(recipientList, subject, body);
     } else {
         throw std::invalid_argument("unrecognized flag");
@@ -65,7 +61,7 @@ void New::execute() {
         throw std::runtime_error("email failed to send");
     }
     delete email;
-}//issue exists with -msg logging
+}
 
 string New::promptMsg() {
     string body;
@@ -73,14 +69,4 @@ string New::promptMsg() {
     getline(cin, body);
     cin.clear();
     return body;
-}
-
-list<string> New::promptFile() {
-    string attachments;
-    std::cout << "Attachments: ";
-    getline(cin, attachments);
-    cin.clear();
-    list<string> attachmentList;
-    boost::algorithm::split(attachmentList, attachments, boost::algorithm::is_any_of(" "));
-    return attachmentList;
 }
