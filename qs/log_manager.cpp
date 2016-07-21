@@ -30,37 +30,41 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
     boost::uuids::uuid logID = (boost::uuids::random_generator()());
     std::list<string> fileContents;
     string logIDStr = boost::uuids::to_string(logID);
-    string logFilePathStr(LOG_DIR_PATH);
-    logFilePathStr.append(logIDStr);
-    logFilePathStr.append(".txt");
-    const char * logFilePath = logFilePathStr.c_str();
+    string logFilePath(LOG_DIR_PATH);
+    logFilePath.append(logIDStr);
+    logFilePath.append(".txt");
     addEmailToLog(logIDStr);
     
-    string senderLine = "Sender: " + sender + "\n";
-    fileContents.push_back(senderLine);
+    ptree log;
+    ptree recipients;
+    ptree attachments;
+    log.put("sender", sender);
     
-    string recipientsLine = "Recipients:";
     for (string recipient : emailRecipients) {
-        recipientsLine += " " + recipient;
+        ptree rtree;
+        rtree.put("", recipient);
+        recipients.push_back(std::make_pair("", rtree));
     }
+    log.add_child("recipients", recipients);
+//    ptree temp; works
+//    temp.put("", "test");
+//    log.get_child("recipients").push_back(std::make_pair("", temp));
     
-    recipientsLine += "\n";
-    fileContents.push_back(recipientsLine);
+    log.put("subject", emailSubject);
     
-    string subjectLine = "Subject: " + emailSubject + "\n";
-    fileContents.push_back(subjectLine);
+    log.put("content", emailContent);
     
-    string contentLine = "Content: " + emailContent + "\n";
-    fileContents.push_back(contentLine);
-    
-    string attachmentsLine = "Attachments:";
     for (auto kv : fileAttachmentMap) {
-        attachmentsLine += " " + kv.second;
+        ptree atree;
+        atree.put("", kv.second);
+        attachments.push_back(std::make_pair("", atree));
     }
+    log.add_child("attachments", attachments);
     
-    attachmentsLine += "\n";
-    fileContents.push_back(attachmentsLine);
-    Utilities::rebuildFile(logFilePath, fileContents);
+    std::ostringstream buf;
+    write_json(buf, log, false);
+    std::string json = buf.str();
+    Utilities::rebuildFile(logFilePath, json);
 }
 
 void LogManager::addEmailToLog(string fileName) { //maybe add more details later

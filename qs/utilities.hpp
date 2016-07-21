@@ -14,8 +14,11 @@
 #include <fstream>
 #include <istream>
 #include <iostream>
+#include <unordered_map>
 
 #include <boost/filesystem.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 using std::cin;
 using std::cout;
@@ -24,9 +27,15 @@ using std::list;
 using std::string;
 using std::vector;
 
+using boost::property_tree::ptree;
+using boost::property_tree::read_json;
+using boost::property_tree::write_json;
+
 namespace Utilities {
     void getFileContents(string filePath, list<string>& fileContents);
-    int rebuildFile(const char * filePath, list<string>& fileContents);
+    void convertJsonToPtree(string filePath, ptree pt);
+    int rebuildFile(string filePath, list<string>& fileContents);
+    int rebuildFile(string filePath, string fileContents);
     string toLowerCase(string str);
 }
 

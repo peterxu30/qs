@@ -13,15 +13,24 @@ void Utilities::getFileContents(string filePath, list<string>& fileContents) {
     string stageFileLine;
     if (fileStagerStream.is_open()) {
         while (getline(fileStagerStream, stageFileLine, '\n')) {
-//            std::cout << "\nstage file path: " << filePath << "\nstagefile line: " << stageFileLine;
             fileContents.push_back(stageFileLine);
         }
     }
 }
 
-int Utilities::rebuildFile(const char * filePath, list<string>& fileContents) {
+void Utilities::convertJsonToPtree(string filePath, ptree pt) {
+    list<string> fileContents;
+    getFileContents(filePath, fileContents);
+    string json = fileContents.front();
+    cout << json;\
+    std::istringstream jsonStream(json);
+    read_json(jsonStream, pt);
+}
+
+
+int Utilities::rebuildFile(string filePath, list<string>& fileContents) {
     FILE* accountsFile;
-    accountsFile = fopen(filePath, "w");
+    accountsFile = fopen(filePath.c_str(), "w");
     
     std::fstream accountsFileStream(filePath);
     if (accountsFileStream.is_open()) {
@@ -35,6 +44,12 @@ int Utilities::rebuildFile(const char * filePath, list<string>& fileContents) {
         return 1;
     }
     return 0;
+}
+
+int Utilities::rebuildFile(string filePath, string fileContents) {
+    list<string> temporary;
+    temporary.push_back(fileContents);
+    return rebuildFile(filePath, temporary);
 }
 
 string Utilities::toLowerCase(string str) {
