@@ -44,6 +44,7 @@ public:
 private:
     static char * LOG_FILE_PATH;
     static char * LOG_DIR_PATH;
+    static char * LOG_FILES_KEY;
     static void addEmailToLog(string fileName);
 
 };

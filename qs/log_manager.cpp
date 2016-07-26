@@ -10,6 +10,7 @@
 
 char * LogManager::LOG_FILE_PATH = "qs_data/log.txt";
 char * LogManager::LOG_DIR_PATH = "qs_data/log/";
+char * LogManager::LOG_FILES_KEY = "files";
 
 bool LogManager::logIsInitialized() {
     return boost::filesystem::exists(LOG_FILE_PATH)
@@ -46,9 +47,6 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
         recipients.push_back(std::make_pair("", rtree));
     }
     log.add_child("recipients", recipients);
-//    ptree temp; works
-//    temp.put("", "test");
-//    log.get_child("recipients").push_back(std::make_pair("", temp));
     
     log.put("subject", emailSubject);
     
@@ -60,16 +58,14 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
         attachments.push_back(std::make_pair("", atree));
     }
     log.add_child("attachments", attachments);
-    
-    std::ostringstream buf;
-    write_json(buf, log, false);
-    std::string json = buf.str();
-    Utilities::rebuildFile(logFilePath, json);
+    Utilities::rebuildFile(logFilePath, log);
 }
 
 void LogManager::addEmailToLog(string fileName) { //maybe add more details later
-    std::list<string> fileContents;
-    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
-    fileContents.push_front(fileName);
+    ptree fileContents;
+    Utilities::convertJsonToPtree(LOG_FILE_PATH, fileContents);
+    ptree temp;
+    temp.put("", fileName);
+    fileContents.get_child(LOG_FILES_KEY).push_back(std::make_pair("", temp));
     Utilities::rebuildFile(LOG_FILE_PATH, fileContents);
 }

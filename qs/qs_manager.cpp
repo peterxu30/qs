@@ -27,9 +27,11 @@ void QSManager::initializeQuickSend() {
     
     if (!LogManager::logIsInitialized()) {
         const char logDirectoryPath[] = "qs_data/log";
+        ptree temp;
+        temp.put("files", "");
         boost::filesystem::path logDir(logDirectoryPath); //fix ghetto
         boost::filesystem::create_directory(logDir);
-        fopen("qs_data/log.txt", "w");
+        Utilities::rebuildFile("qs_data/log.txt", temp);
         cout << "No log file detected: Log file created.\n";
     }
     

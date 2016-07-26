@@ -33,9 +33,10 @@ using boost::property_tree::write_json;
 
 namespace Utilities {
     void getFileContents(string filePath, list<string>& fileContents);
-    void convertJsonToPtree(string filePath, ptree pt);
+    void convertJsonToPtree(string filePath, ptree& pt);
     int rebuildFile(string filePath, list<string>& fileContents);
     int rebuildFile(string filePath, string fileContents);
+    int rebuildFile(string filePath, ptree& json);
     string toLowerCase(string str);
 }
 

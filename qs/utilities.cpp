@@ -18,11 +18,11 @@ void Utilities::getFileContents(string filePath, list<string>& fileContents) {
     }
 }
 
-void Utilities::convertJsonToPtree(string filePath, ptree pt) {
+void Utilities::convertJsonToPtree(string filePath, ptree& pt) {
     list<string> fileContents;
     getFileContents(filePath, fileContents);
     string json = fileContents.front();
-    cout << json;\
+    cout << json;
     std::istringstream jsonStream(json);
     read_json(jsonStream, pt);
 }
@@ -50,6 +50,13 @@ int Utilities::rebuildFile(string filePath, string fileContents) {
     list<string> temporary;
     temporary.push_back(fileContents);
     return rebuildFile(filePath, temporary);
+}
+
+int Utilities::rebuildFile(string filePath, ptree& json) {
+    std::ostringstream buf;
+    write_json(buf, json, false);
+    std::string jsonStr = buf.str();
+    return Utilities::rebuildFile(filePath, jsonStr);
 }
 
 string Utilities::toLowerCase(string str) {

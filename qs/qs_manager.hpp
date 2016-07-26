@@ -13,6 +13,8 @@
 #include <iostream>
 
 #include <boost/filesystem.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 #include "accounts_manager.hpp"
 #include "email_manager.hpp"
@@ -24,6 +26,10 @@ using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
+
+using boost::property_tree::ptree;
+using boost::property_tree::read_json;
+using boost::property_tree::write_json;
 
 class QSManager {
 public:
