@@ -17,5 +17,11 @@ void Log::execute() {
         throw std::length_error("log can have zero arguments");
     }
     
-    UserInterface::displayAllEmailMessages();
+    list<string> emailMessages = LogManager::getAllSentMessages();
+    
+    cout << "Message Log\n";
+    for (string emailMessage : emailMessages) {
+        cout << emailMessage << '\n';
+    }
+    cout << endl;
 }

@@ -22,7 +22,6 @@ void Utilities::convertJsonToPtree(string filePath, ptree& pt) {
     list<string> fileContents;
     getFileContents(filePath, fileContents);
     string json = fileContents.front();
-    cout << json;
     std::istringstream jsonStream(json);
     read_json(jsonStream, pt);
 }
@@ -62,4 +61,12 @@ int Utilities::rebuildFile(string filePath, ptree& json) {
 string Utilities::toLowerCase(string str) {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     return str;
+}
+
+list<string> Utilities::asList(ptree const& pt, ptree::key_type const& key)
+{
+    list<string> r;
+    for (auto& item : pt.get_child(key))
+        r.push_back(item.second.get_value<string>());
+    return r;
 }

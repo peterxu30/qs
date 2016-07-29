@@ -38,6 +38,7 @@ namespace Utilities {
     int rebuildFile(string filePath, string fileContents);
     int rebuildFile(string filePath, ptree& json);
     string toLowerCase(string str);
+    list<string> asList(ptree const& pt, ptree::key_type const& key);
 }
 
 #endif /* utilities_hpp */
