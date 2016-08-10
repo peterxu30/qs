@@ -18,7 +18,12 @@ void Users::execute() {
     }
     
     std::list<std::string> emails = AccountsManager::getAllEmailsAsStrings();
-    std::string activeEmailAccount = AccountsManager::getActiveEmailAddress();
+    std::string activeEmailAccount;
+    try {
+        activeEmailAccount = AccountsManager::getActiveEmailAddress();
+    } catch (std::exception& e) {
+        activeEmailAccount = "";
+    }
     std::cout << "\n";
     for (std::string email : emails) {
         if (email == activeEmailAccount) {

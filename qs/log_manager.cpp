@@ -22,15 +22,6 @@ list<string> LogManager::getAllSentMessages() {
     Utilities::convertJsonToPtree(LOG_FILE_PATH, log);
     list<string> logList = Utilities::asList(log, LOG_FILES_KEY);
     return logList;
-//    cout << "test " << test.front() << "Test";
-//    for (auto i : Utilities::asList<string>(log, LOG_FILES_KEY)) {
-//        cout << i << "\n";
-//    }
-//    cout << "Test " << Utilities::asList<string>(log, LOG_FILES_KEY) << " test";
-//    
-//    list<string> fileContents;
-//    Utilities::getFileContents(LOG_FILE_PATH, fileContents);
-//    return fileContents;
 }
 
 void LogManager::logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent) {

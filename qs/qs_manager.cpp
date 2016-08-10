@@ -21,7 +21,10 @@ void QSManager::initializeQuickSend() {
     }
     
     if (!AccountsManager::accountsManagerIsInitialized()) {
-        fopen("qs_data/accountFile.txt", "w");
+        ptree temp;
+        temp.put("active", "");
+        temp.put("accounts", "");
+        Utilities::rebuildFile("qs_data/accountFile.txt", temp);
         cout << "No account file detected: Account file created.\n";
     }
     

@@ -63,10 +63,12 @@ string Utilities::toLowerCase(string str) {
     return str;
 }
 
+//Credit goes to sehe. (http://stackoverflow.com/questions/23481262/using-boost-property-tree-to-read-int-array)
 list<string> Utilities::asList(ptree const& pt, ptree::key_type const& key)
 {
     list<string> r;
-    for (auto& item : pt.get_child(key))
+    for (auto& item : pt.get_child(key)) {
         r.push_back(item.second.get_value<string>());
+    }
     return r;
 }

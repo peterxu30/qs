@@ -29,100 +29,65 @@ void AccountsManager::addEmailAccount(string email, string password, string smtp
     
     string encodedPassword = base64_encode(reinterpret_cast<const unsigned char*>(password.c_str()), 20);
     
-    list<string> fileContents;
-    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
-    list<string> updatedFileContents;
-    for (string accountLine : fileContents) {
-        vector<string> tokens;
-        boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-        
-        if (active && tokens.size() == 4) {
-            size_t len = accountLine.size();
-            accountLine.erase(len-1, 2);
-        }
-        
-        if (email != tokens[0]) {
-            updatedFileContents.push_back(accountLine);
-        }
-    }
+    ptree account;
+    account.put("address", email);
+    account.put("password", encodedPassword);
+    account.put("smtp", smtpAddress);
+    
+    ptree accountJson;
+    Utilities::convertJsonToPtree(ACCOUNT_FILE_PATH, accountJson);
     
     if (active) {
-        updatedFileContents.push_front(email + " " + encodedPassword + " " + smtpAddress + " *");
-        changeActiveEmailAccountVariables(email, encodedPassword, smtpAddress);
-    } else {
-        updatedFileContents.push_back(email + " " + encodedPassword + " " + smtpAddress);
+        accountJson.get_child("active").clear();
+        accountJson.put_child("active", account);
     }
-    
-    rebuildAccountsFile(updatedFileContents);
+
+    accountJson.get_child("accounts").push_back(std::make_pair("", account));
+    Utilities::rebuildFile(ACCOUNT_FILE_PATH, accountJson);
 }
 
-//fix return type
 bool AccountsManager::removeEmailAccount(string email) {
-    list<string> fileContents;
-    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
-    list<string> updatedFileContents;
-    bool removed = false;
-    for (string accountLine : fileContents) {
-        vector<string> tokens;
-        boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-        
-        if (email == tokens[0]) {
-            if (tokens.size() == 4) {
-                AccountsManager::activeAccountExists = false;
-            }
-            removed = true;
-        } else {
-            updatedFileContents.push_back(accountLine);
-        }
+    ptree accountJson;
+    Utilities::convertJsonToPtree(ACCOUNT_FILE_PATH, accountJson);
+    if (getActiveEmailAddress() == email) {
+        accountJson.put("active", "");
     }
     
-    rebuildAccountsFile(updatedFileContents);
-    return removed;
+    ptree& accounts = accountJson.get_child("accounts");
+    for(auto it = accounts.begin(); it != accounts.end();) {
+        if(it->second.get_value<string>("email") == email)
+            it = accounts.erase(it);
+        else
+            ++it;
+    }
+    Utilities::rebuildFile(ACCOUNT_FILE_PATH, accountJson);
+    return true;
 }
 
 AccountsManager::Account AccountsManager::getActiveEmailAccount() {
-    list<string> fileContents;
-    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
-    bool activeExists = false;
-    if (!AccountsManager::activeAccountExists) {
-        for (string accountLine : fileContents) {
-            vector<string> tokens;
-            boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-            
-            if (tokens.back() == "*") {
-                activeEmailAddress = tokens[0];
-                activeEmailEncodedPassword = tokens[1];
-                activeEmailSMTP = tokens[2];
-                activeExists = true;
-                break;
-            }
-        }
+    ptree accountJson;
+    Utilities::convertJsonToPtree(ACCOUNT_FILE_PATH, accountJson);
+    ptree active = accountJson.get_child("active");
+    if (active.get_child("address").get_value<string>() == "") {
+        throw std::runtime_error("no active account selected.");
     }
-    
     AccountsManager::Account activeAccount;
-    ASSERT((activeAccountExists || activeExists), "fatal: no active account selected.");
-    
-    activeAccount.email = activeEmailAddress;
-    activeAccount.password = base64_decode(activeEmailEncodedPassword);
-    activeAccount.smtpAddress = activeEmailSMTP;
-    
+    activeAccount.email = active.get_child("address").get_value<string>();
+    activeAccount.password = base64_decode(active.get_child("password").get_value<string>());
+    activeAccount.smtpAddress = active.get_child("smtp").get_value<string>();
     return activeAccount;
 }
 
 list<string> AccountsManager::getAllEmailsAsStrings() {
-    list<string> fileContents;
-    Utilities::getFileContents(ACCOUNT_FILE_PATH, fileContents);
-
+    ptree accountJson;
+    Utilities::convertJsonToPtree(ACCOUNT_FILE_PATH, accountJson);
     list<string> emailsAsStrings;
-    for (string accountLine : fileContents) {
-        vector<string> tokens;
-        boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-        
-        string accountWithoutPassword;
-        accountWithoutPassword = tokens[0];
-        
-        emailsAsStrings.push_back(accountWithoutPassword);
+
+    for (auto& account : accountJson.get_child("accounts")) {
+        string address = account.second.get_child("address").get_value<string>();
+        emailsAsStrings.push_back(address);
     }
+    
     return emailsAsStrings;
 }
 
@@ -130,36 +95,24 @@ string AccountsManager::getActiveEmailAddress() {
     return getActiveEmailAccount().email;
 }
 
+//switch to json
 void AccountsManager::switchActiveEmailAccount(string email) {
-    std::ifstream accountsFileStream(ACCOUNT_FILE_PATH);
-    list<string> fileContents;
-    string accountLine;
+    ptree accountJson;
+    Utilities::convertJsonToPtree(ACCOUNT_FILE_PATH, accountJson);
     bool exists = false;
-    if (accountsFileStream.is_open()) {
-        while (getline(accountsFileStream, accountLine, '\n')) {
-            vector<string> tokens;
-            boost::algorithm::split(tokens, accountLine, boost::algorithm::is_any_of(" "));
-            
-            if (tokens.size() == 4) {
-                size_t len = accountLine.size();
-                accountLine.erase(len-1, 2);
-            }
-            
-            if (email == tokens[0]) {
-                exists = true;
-                accountLine += " *";
-                fileContents.push_front(accountLine);
-                
-                changeActiveEmailAccountVariables(tokens[0], tokens[1], tokens[2]);
-            } else {
-                fileContents.push_back(accountLine);
-            }
+    
+    for (auto& account : accountJson.get_child("accounts")) {
+        if (account.second.get_child("address").get_value<string>() == email) {
+            accountJson.add_child("active", account.second);
+            exists = true;
         }
     }
+    
     if (!exists) {
-        cout << "fatal: account does not exist." << endl;
+        throw std::invalid_argument("email does not exist.");
     }
-    rebuildAccountsFile(fileContents);
+    
+    Utilities::rebuildFile(ACCOUNT_FILE_PATH, accountJson);
 }
 
 bool AccountsManager::isSupportedEmailDomain(string email) {
@@ -192,14 +145,6 @@ bool AccountsManager::isValidEmailAddress(string email) {
         return true;
     }
     return false;
-}
-
-//unneccessary?
-void AccountsManager::changeActiveEmailAccountVariables(string email, string encodedPassword, string emailSMTP) {
-    AccountsManager::activeEmailAddress = email;
-    AccountsManager::activeEmailEncodedPassword = encodedPassword;
-    AccountsManager::activeEmailSMTP = emailSMTP;
-    AccountsManager::activeAccountExists = true;
 }
 
 void AccountsManager::rebuildAccountsFile(list<string>& fileContents) {

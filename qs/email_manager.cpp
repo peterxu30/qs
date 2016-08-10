@@ -62,6 +62,7 @@ MailMessage * EmailManager::createEmailFromStaging(list<string>& emailRecipients
 void EmailManager::sendEmail(MailMessage * email)
 {
     AccountsManager::Account activeAccount = AccountsManager::getActiveEmailAccount();
+//    ptree activeAccount = AccountsManager::getActiveEmailAccount();
     string host = activeAccount.smtpAddress;
     UInt16 port = 465;
     string user = activeAccount.email;

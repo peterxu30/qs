@@ -62,7 +62,6 @@ private:
     static std::unordered_map<string, string> supportedEmailDomains;
     static bool verifyEmailIsValid(string email, string password, string smtpAddress);
     static bool isValidEmailAddress(string email);
-    static void changeActiveEmailAccountVariables(string email, string encodedPassword, string emailSMTP);
     static void rebuildAccountsFile(list<string>& fileContents);
 };
 
