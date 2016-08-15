@@ -17,10 +17,24 @@ bool LogManager::logIsInitialized() {
         && boost::filesystem::exists(LOG_DIR_PATH);
 }
 
-list<string> LogManager::getAllSentMessages() {
+//list<string> LogManager::getAllSentMessages() {
+//    ptree log;
+//    Utilities::convertJsonToPtree(LOG_FILE_PATH, log);
+//    list<string> logList = Utilities::asList(log, LOG_FILES_KEY);
+//    return logList;
+//}
+
+list<ptree> LogManager::getAllSentMessages() {
     ptree log;
     Utilities::convertJsonToPtree(LOG_FILE_PATH, log);
-    list<string> logList = Utilities::asList(log, LOG_FILES_KEY);
+    list<ptree> logList;
+
+    for (auto& account : log.get_child("files")) {
+        logList.push_back(account.second);
+//        string address = account.second.get_child("address").get_value<string>();
+//        emailsAsStrings.push_back(address);
+    }
+    
     return logList;
 }
 
@@ -35,12 +49,14 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
     string logFilePath(LOG_DIR_PATH);
     logFilePath.append(logIDStr);
     logFilePath.append(".txt");
-    addEmailToLog(logIDStr);
     
     ptree log;
     ptree recipients;
     ptree attachments;
     log.put("sender", sender);
+    
+    boost::posix_time::ptime time = boost::posix_time::second_clock::local_time();
+    string timeString = boost::posix_time::to_simple_string(time);
     
     for (string recipient : emailRecipients) {
         ptree rtree;
@@ -53,6 +69,8 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
     
     log.put("content", emailContent);
     
+    log.put("time", timeString);
+    
     for (auto kv : fileAttachmentMap) {
         ptree atree;
         atree.put("", kv.second);
@@ -60,13 +78,16 @@ void LogManager::logEmail(string sender, list<string> emailRecipients, string em
     }
     log.add_child("attachments", attachments);
     Utilities::rebuildFile(logFilePath, log);
+    addEmailToLog(logIDStr, emailSubject, timeString);
 }
 
-void LogManager::addEmailToLog(string fileName) { //maybe add more details later
+void LogManager::addEmailToLog(string fileName, string emailSubject, string time) {
     ptree fileContents;
     Utilities::convertJsonToPtree(LOG_FILE_PATH, fileContents);
     ptree temp;
-    temp.put("", fileName);
+    temp.put("id", fileName);
+    temp.put("subject", emailSubject);
+    temp.put("time", time);
     fileContents.get_child(LOG_FILES_KEY).push_back(std::make_pair("", temp));
     Utilities::rebuildFile(LOG_FILE_PATH, fileContents);
 }

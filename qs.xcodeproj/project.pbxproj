@@ -11,6 +11,7 @@
 		D001D0801D34A7C0009F33CF /* users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D001D07E1D34A7C0009F33CF /* users.cpp */; };
 		D0534DD91CEEAFE800BB83C1 /* qs_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0534DD71CEEAFE800BB83C1 /* qs_manager.cpp */; };
 		D0534DDC1CEEB41600BB83C1 /* log_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0534DDA1CEEB41600BB83C1 /* log_manager.cpp */; };
+		D05C627F1D6276AB00E0B54A /* libboost_date_time.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D05C627E1D6276AB00E0B54A /* libboost_date_time.dylib */; };
 		D07839181CEA794400E4A03D /* accounts_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07839161CEA794400E4A03D /* accounts_manager.cpp */; };
 		D078391E1CEA938600E4A03D /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D078391D1CEA938600E4A03D /* libboost_filesystem.dylib */; };
 		D07839221CEA93CB00E4A03D /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D07839211CEA93CB00E4A03D /* libboost_system.dylib */; };
@@ -98,6 +99,7 @@
 		D0534DD81CEEAFE800BB83C1 /* qs_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qs_manager.hpp; sourceTree = "<group>"; };
 		D0534DDA1CEEB41600BB83C1 /* log_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log_manager.cpp; sourceTree = "<group>"; };
 		D0534DDB1CEEB41600BB83C1 /* log_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = log_manager.hpp; sourceTree = "<group>"; };
+		D05C627E1D6276AB00E0B54A /* libboost_date_time.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_date_time.dylib; path = ../../../../../usr/local/lib/libboost_date_time.dylib; sourceTree = "<group>"; };
 		D07839161CEA794400E4A03D /* accounts_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = accounts_manager.cpp; sourceTree = "<group>"; };
 		D07839171CEA794400E4A03D /* accounts_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = accounts_manager.hpp; sourceTree = "<group>"; };
 		D078391D1CEA938600E4A03D /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = /usr/local/lib/libboost_filesystem.dylib; sourceTree = "<absolute>"; };
@@ -191,6 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05C627F1D6276AB00E0B54A /* libboost_date_time.dylib in Frameworks */,
 				D00027DD1CF2D4F6004AAE7F /* libcurses.tbd in Frameworks */,
 				D07839221CEA93CB00E4A03D /* libboost_system.dylib in Frameworks */,
 				D078391E1CEA938600E4A03D /* libboost_filesystem.dylib in Frameworks */,
@@ -285,6 +288,7 @@
 		D0F788381CCAD22B00F3B782 = {
 			isa = PBXGroup;
 			children = (
+				D05C627E1D6276AB00E0B54A /* libboost_date_time.dylib */,
 				D0A8DDED1D053D0C006F9307 /* qs_old */,
 				D0F788A31CCAD2F100F3B782 /* Libraries */,
 				D0F788431CCAD22B00F3B782 /* qs */,

@@ -17,11 +17,17 @@ void Log::execute() {
         throw std::length_error("log can have zero arguments");
     }
     
-    list<string> emailMessages = LogManager::getAllSentMessages();
+//    list<string> emailMessages = LogManager::getAllSentMessages();
+    list<ptree> emailMessages = LogManager::getAllSentMessages();
     
     cout << "Message Log\n";
-    for (string emailMessage : emailMessages) {
-        cout << emailMessage << '\n';
+//    for (string emailMessage : emailMessages) {
+//        cout << emailMessage << '\n';
+//    }
+    for (ptree emailMessage : emailMessages) {
+        cout << "id: " << emailMessage.get_child("id").get_value<string>() << "   ";
+        cout << "date sent: " << emailMessage.get_child("time").get_value<string>() << '\n';
+        cout << "subject: " << emailMessage.get_child("subject").get_value<string>() << '\n';
     }
     cout << endl;
 }

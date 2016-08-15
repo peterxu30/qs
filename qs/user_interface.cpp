@@ -120,13 +120,13 @@ void UserInterface::interactiveDeleteEmailAccount(int argc, const char* argv[]) 
 }
 
 void UserInterface::displayAllEmailMessages() {
-    list<string> emailMessages = LogManager::getAllSentMessages();
-    
-    cout << "Message Log\n";
-    for (string emailMessage : emailMessages) {
-        cout << emailMessage << '\n';
-    }
-    cout << endl;
+//    list<string> emailMessages = LogManager::getAllSentMessages();
+//    
+//    cout << "Message Log\n";
+//    for (string emailMessage : emailMessages) {
+//        cout << emailMessage << '\n';
+//    }
+//    cout << endl;
 }
 
 int main(int argc, const char * argv[]) {

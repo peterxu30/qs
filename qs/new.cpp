@@ -57,6 +57,7 @@ void New::execute() {
     try {
         EmailManager::sendEmail(email);
         LogManager::logEmail(AccountsManager::getActiveEmailAddress(), recipientList, subject, body, fileAttachmentMap);
+        std::cout <<"email sent\n" << endl;
     } catch (std::exception& e) {
         throw std::runtime_error("email failed to send");
     }

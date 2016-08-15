@@ -14,6 +14,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
@@ -39,13 +41,15 @@ public:
     static bool logIsInitialized();
     static void logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent);
     static void logEmail(string sender, list<string> emailRecipients, string emailSubject, string emailContent, std::unordered_map<string, string> fileAttachmentMap);
-    static list<string> getAllSentMessages();
+//    static list<string> getAllSentMessages();
+    static list<ptree> getAllSentMessages();
     
 private:
     static char * LOG_FILE_PATH;
     static char * LOG_DIR_PATH;
     static char * LOG_FILES_KEY;
     static void addEmailToLog(string fileName);
+    static void addEmailToLog(string fileName, string emailSubject, string time);
 
 };
 
